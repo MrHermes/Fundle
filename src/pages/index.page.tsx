@@ -8,7 +8,7 @@ export default function HomePage() {
     <Layout>
       <Seo />
 
-      <main>Fundle website</main>
+      <main>Fundle website test</main>
     </Layout>
   );
 }
