@@ -1,0 +1,17 @@
+import Link from 'next/link';
+import * as React from 'react';
+
+import Layout from '@/components/layout/Layout';
+import Seo from '@/components/Seo';
+
+export default function HomePage() {
+  return (
+    <Layout>
+      <Seo />
+
+      <main>
+        <Link href='/sandbox/typography'>Typography</Link>
+      </main>
+    </Layout>
+  );
+}
