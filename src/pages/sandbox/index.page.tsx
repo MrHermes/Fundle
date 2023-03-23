@@ -9,8 +9,9 @@ export default function HomePage() {
     <Layout>
       <Seo />
 
-      <main>
+      <main className='layout flex flex-col gap-y-2 pt-5'>
         <Link href='/sandbox/typography'>Typography</Link>
+        <Link href='/sandbox/colors'>Colors</Link>
       </main>
     </Layout>
   );

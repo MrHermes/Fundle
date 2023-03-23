@@ -9,7 +9,18 @@ module.exports = {
       fontFamily: {
         primary: ['Poppins', ...fontFamily.sans],
       },
-      // colors: {},
+      colors: {
+        primary: {
+          100: '#02A95C',
+          200: '#CFEEE4',
+          300: '#E6F8F2',
+          400: '#EDFFF9',
+          500: '#FFFFFF',
+        },
+        secondary: {
+          100: '#FFA500',
+        },
+      },
       keyframes: {
         shimmer: {
           '0%': {
