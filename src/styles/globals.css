@@ -13,4 +13,21 @@
     max-width: 90rem;
     @apply mx-auto w-11/12;
   }
+
+  .swiper-container {
+    @apply w-9/12;
+    height: 100%;
+  }
+
+  .swiper-container .swiper-pagination {
+    @apply relative mt-12;
+  }
+
+  .swiper-container .swiper-pagination-bullet {
+    @apply h-2 w-2 bg-primary-100 opacity-50;
+  }
+
+  .swiper-container .swiper-pagination-bullet-active {
+    @apply bg-primary-100 opacity-100;
+  }
 }
