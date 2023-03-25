@@ -1,9 +1,31 @@
 import * as React from 'react';
 
+import ButtonLink from '@/components/buttons/ButtonLink';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
+import Typography from '@/components/Typography';
 
-import Service from '@/sections/Service';
+const sandboxComponent = [
+  {
+    title: 'Typography',
+    url: '/sandbox/typography',
+  },
+  {
+    title: 'Colors',
+    url: '/sandbox/colors',
+  },
+  {
+    title: 'ButtonLink',
+    url: '/sandbox/buttonLink',
+  },
+];
+
+const sandboxPages = [
+  {
+    title: 'Landing Page',
+    url: '/sandbox/landing/',
+  },
+];
 
 export default function HomePage() {
   return (
@@ -11,7 +33,53 @@ export default function HomePage() {
       <Seo />
 
       <main className='layout'>
-        <Service />
+        <div>
+          <div className='flex flex-col items-center'>
+            <Typography
+              sizeVariant='h2'
+              colorVariant='tertiary'
+              className='p-24 font-bold'
+            >
+              Fundle Components
+            </Typography>
+            <Typography
+              sizeVariant='c1'
+              colorVariant='primary'
+              className='font-semibold'
+            >
+              Pages
+            </Typography>
+            <div className='flex flex-wrap justify-center gap-3 pt-3'>
+              {sandboxPages.map(({ title, url }) => (
+                <ButtonLink
+                  key={url}
+                  href={url}
+                  className='py-2 px-5 font-light hover:bg-secondary-100/60'
+                >
+                  {title}
+                </ButtonLink>
+              ))}
+            </div>
+            <Typography
+              sizeVariant='c1'
+              colorVariant='primary'
+              className='pt-24 font-semibold'
+            >
+              Components
+            </Typography>
+            <div className='flex flex-wrap justify-center gap-3 pt-3'>
+              {sandboxComponent.map(({ title, url }) => (
+                <ButtonLink
+                  key={url}
+                  href={url}
+                  className='py-2 px-5 font-light hover:bg-secondary-100/60'
+                >
+                  {title}
+                </ButtonLink>
+              ))}
+            </div>
+          </div>
+        </div>
       </main>
     </Layout>
   );
