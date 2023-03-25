@@ -7,7 +7,6 @@ import Typography from '@/components/Typography';
 const Poster = () => {
   return (
     <section className='container mx-auto mt-[150px] mb-[150px] w-11/12 rounded-[58px] bg-primary-100'>
-      <div className='container mx-auto '>
         <div className='flex flex-col items-center lg:flex-row lg:gap-x-[100px]'>
           <div className='order-1 ml-[70px] flex-1 lg:-order-1'>
             <Typography
@@ -45,7 +44,6 @@ const Poster = () => {
             />
           </div>
         </div>
-      </div>
     </section>
   );
 };
