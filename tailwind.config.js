@@ -19,6 +19,7 @@ module.exports = {
         },
         secondary: {
           100: '#FFA500',
+          200: '#FF7A00',
         },
       },
       keyframes: {
