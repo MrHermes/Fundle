@@ -4,15 +4,15 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
 import AboutUs from '@/sections/AboutUs';
-import Service from '@/sections/Service';
 import Hero from '@/sections/Hero';
+import Service from '@/sections/Service';
 
 export default function HomePage() {
   return (
     <Layout>
       <Seo />
-      <Hero />
-      <main className='layout'>
+      <main>
+        <Hero />
         <AboutUs />
         <Service />
       </main>

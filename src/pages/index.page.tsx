@@ -4,7 +4,6 @@ import ButtonLink from '@/components/buttons/ButtonLink';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
-import Hero from '@/sections/Hero';
 
 const sandboxComponent = [
   {
@@ -32,7 +31,6 @@ export default function HomePage() {
   return (
     <Layout>
       <Seo />
-      <Hero />
       <main className='layout'>
         <div>
           <div className='flex flex-col items-center'>
