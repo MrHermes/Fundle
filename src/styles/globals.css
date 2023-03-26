@@ -30,4 +30,8 @@
   .swiper-container .swiper-pagination-bullet-active {
     @apply bg-primary-100 opacity-100;
   }
+
+  .text-error {
+    @apply mt-1 ml-2 text-sm text-red-500;
+  }
 }

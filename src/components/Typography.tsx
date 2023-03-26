@@ -11,6 +11,7 @@ const SizeVariant = [
   'c1',
   'c2',
   'c3',
+  'c4',
 ] as const;
 
 const ColorVariant = ['primary', 'secondary', 'tertiary'] as const;
@@ -41,11 +42,12 @@ const Typography = ({
           sizeVariant === 'c1' && ['text-2xl'],
           sizeVariant === 'c2' && ['text-xl'],
           sizeVariant === 'c3' && ['text-base'],
+          sizeVariant === 'c4' && ['text-sm'],
         ],
         [
           colorVariant === 'primary' && ['text-[#201F1F]'],
           colorVariant === 'secondary' && ['text-white'],
-          colorVariant === 'tertiary' && ['text-[#02A95C]'],
+          colorVariant === 'tertiary' && ['text-[#06A371]'],
         ],
         className
       )}

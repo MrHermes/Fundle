@@ -33,6 +33,9 @@ function typography() {
         <Typography sizeVariant='c3' colorVariant='primary'>
           lorem ipsum
         </Typography>
+        <Typography sizeVariant='c4' colorVariant='primary'>
+          lorem ipsum
+        </Typography>
 
         <div className='pt-9'>
           <Typography sizeVariant='h4' colorVariant='primary'>
