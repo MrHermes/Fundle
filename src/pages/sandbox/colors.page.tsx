@@ -8,6 +8,7 @@ function colors() {
       <p className='bg-primary-300'>primary-300</p>
       <p className='bg-primary-400'>primary-400</p>
       <p className='bg-primary-500'>primary-500</p>
+      <p className='bg-primary-600'>primary-600</p>
       <p className='bg-secondary-100'>secondary-100</p>
     </div>
   );
