@@ -4,7 +4,7 @@ import Typography from "../components/Typography";
 function Hero() {
   return(
       <div>
-          <div className="relative -top-20 z-0 h-screen lg:-top-16">
+          <div className="relative -top-24 z-0 h-screen lg:-top-20">
               <Image 
                   src={"/images/hero.jpg"} 
                   alt={"Hero"}
@@ -12,7 +12,7 @@ function Hero() {
                   className="absolute top-0"
               />
           </div>
-          <div className="absolute text-center top-24 left-1/4 right-1/4 lg:top-1/4 lg:left-1/3 lg:right-1/3">
+          <div className="absolute text-center top-28 left-1/4 right-1/4 lg:top-1/4 lg:left-1/3 lg:right-1/3">
               <Typography sizeVariant='h1' colorVariant='secondary' className="font-bold">
                   Let's Bring More Smile !
               </Typography>  

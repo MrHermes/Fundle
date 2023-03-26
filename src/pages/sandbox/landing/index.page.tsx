@@ -5,12 +5,13 @@ import Seo from '@/components/Seo';
 
 import AboutUs from '@/sections/AboutUs';
 import Service from '@/sections/Service';
+import Hero from '@/sections/Hero';
 
 export default function HomePage() {
   return (
     <Layout>
       <Seo />
-
+      <Hero />
       <main className='layout'>
         <AboutUs />
         <Service />

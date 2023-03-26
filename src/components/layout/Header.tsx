@@ -8,6 +8,14 @@ import Link from "next/link";
 import Image from "next/image";
 import Typography from "@/components/Typography";
 
+const NavbarLink = [
+  {link: "", title: "Beranda"},
+  {link: "", title: "Tentang"},
+  {link: "", title: "Layanan"},
+  {link: "", title: "Donasi"},
+  {link: "", title: "Profil"}
+];
+
 function Header() {
   const [clientWindowHeight, setClientWindowHeight] = useState(0);
 
@@ -32,59 +40,31 @@ function Header() {
   }, [clientWindowHeight]);
 
   return( 
-    <header>
-      <div className="sticky top-0 z-30 min-h-[4rem]">
-            <motion.div
-              initial={{backgroundColor: "rgba(6,163,113,0)"}}
-              animate={{backgroundColor: backgroundTransparacy ? "rgba(6,163,113,0)" : "rgba(6,163,113,1)" }} 
-              transition={{duration: 1, delay: 0.2, ease: "easeInOut"}}
-            >
-              <nav className="flex flex-row flex-wrap justify-between py-4 mx-16">
-                <Image 
-                    src={""} 
-                    alt={"Fundle"}
-                    width={100}
-                />
-                <ul className="flex flex-row">
-                    <li className="px-2">
-                    <Link href={""}>
-                        <Typography sizeVariant='c3' colorVariant='secondary'>
-                        Beranda
-                        </Typography>
-                    </Link>
-                    </li>
-                    <li className="px-2">
-                    <Link href={""}>
-                        <Typography sizeVariant='c3' colorVariant='secondary'>
-                        Tentang
-                        </Typography>
-                    </Link>
-                    </li>
-                    <li className="px-2">
-                    <Link href={""}>
-                        <Typography sizeVariant='c3' colorVariant='secondary'>
-                        Layanan
-                        </Typography>
-                    </Link>
-                    </li>
-                    <li className="px-2">
-                    <Link href={""}>
-                        <Typography sizeVariant='c3' colorVariant='secondary'>
-                        Donasi
-                        </Typography>
-                    </Link>
-                    </li>
-                    <li className="px-2">
-                    <Link href={""}>
-                        <Typography sizeVariant='c3' colorVariant='secondary'>
-                        Profil
-                        </Typography>
-                    </Link>
-                    </li>
-                </ul>
-            </nav>
-            </motion.div>   
-      </div> 
+    <header className="sticky top-0 z-30 min-h-[4rem]">
+      <motion.div
+        initial={{backgroundColor: "rgba(6,163,113,0)"}}
+        animate={{backgroundColor: backgroundTransparacy ? "rgba(6,163,113,0)" : "rgba(6,163,113,1)" }} 
+        transition={{duration: 1, delay: 0.2, ease: "easeInOut"}}
+      >
+        <nav className="flex flex-row flex-wrap justify-between py-6 mx-16">
+          <Image 
+            src={""} 
+            alt={"Fundle"}
+            width={100}
+          />
+          <ul className="flex flex-row gap-x-4">
+            {NavbarLink.map(({link, title}) => (
+              <li key={`${link}${title}`}>
+              <Link href={link}>
+                  <Typography sizeVariant='c3' colorVariant='secondary'>
+                  {title}
+                  </Typography>
+              </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </motion.div>    
     </header>
   );
 }
