@@ -25,6 +25,10 @@ const sandboxPages = [
     title: 'Landing Page',
     url: '/sandbox/landing/',
   },
+  {
+    title: 'Login',
+    url: '/login',
+  },
 ];
 
 export default function HomePage() {
