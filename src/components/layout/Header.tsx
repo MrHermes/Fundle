@@ -41,16 +41,18 @@ function Header() {
 
   return( 
     <header className="sticky top-0 z-30 min-h-[4rem]">
-      <motion.div
+      <motion.nav
         initial={{backgroundColor: "rgba(6,163,113,0)"}}
         animate={{backgroundColor: backgroundTransparacy ? "rgba(6,163,113,0)" : "rgba(6,163,113,1)" }} 
         transition={{duration: 1, delay: 0.2, ease: "easeInOut"}}
       >
-        <nav className="flex flex-row flex-wrap justify-between py-6 mx-16">
+        <div className="layout flex flex-row flex-wrap justify-between py-6">
           <Image 
-            src={""} 
+            src={"/images/fundle.svg"} 
             alt={"Fundle"}
             width={100}
+            height={60}
+            className="h-6 w-24"
           />
           <ul className="flex flex-row gap-x-4">
             {NavbarLink.map(({link, title}) => (
@@ -63,8 +65,8 @@ function Header() {
               </li>
             ))}
           </ul>
-        </nav>
-      </motion.div>    
+        </div>
+      </motion.nav>    
     </header>
   );
 }

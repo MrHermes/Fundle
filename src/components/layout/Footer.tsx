@@ -19,16 +19,17 @@ const SocialMedia = [
 
 function Footer() {
   return (
-    <footer className="relative h-[70vh] mt-10 lg:h-[50vh]">
-      <div className="z-0">
+    <footer className="relative mt-10 h-[70vh] lg:h-[40vh]">
+      <div className="overflow-visible">
         <Image 
-            src={"/images/base footer.jpg"}
-            alt={"Footer"}
-            fill
-            className="absolute top-0"
+          src={"/images/base footer.svg"}
+          alt={"Footer"}
+          width={20}
+          height={20}
+          className="absolute w-full h-full object-cover object-top"
         />
       </div>
-      <div className="absolute top-1/4 bottom-1/2 z-10 min-w-[calc(100%-8rem)] h-max flex flex-row flex-wrap justify-between mx-16">
+      <div className="layout relative top-1/4 bottom-1/4 h-max flex flex-row flex-wrap justify-between align-middle lg:top-12">
         <div>
           <Typography sizeVariant='h2' colorVariant='secondary' className="font-bold">
               Fundle
@@ -49,15 +50,17 @@ function Footer() {
           <Typography sizeVariant='h6' colorVariant='secondary' className="font-bold">
               Contact us
           </Typography>
-          <div className="flex flex-row mt-2 gap-x-5">
+          <div className="flex flex-row gap-x-5">
             {SocialMedia.map(({link, icon}) => (
-                <Link key={`${link}${icon}`} href={'${link}'} className='text-5xl text-white hover:text-primary-300'>
+                <Link key={`${link}${icon}`} href={'${link}'} className='text-3xl text-white hover:text-primary-300'>
                   {icon}
                 </Link>
             ))}
           </div>
         </div>
       </div>
+      
+      
     </footer>
   );
 }
