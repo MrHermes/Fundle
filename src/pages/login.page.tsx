@@ -1,8 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Input from '@/components/forms/Input';
+import InputPassword from '@/components/forms/InputPassword';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
@@ -37,27 +39,34 @@ function Login() {
           alt='forms-bg'
           width={500}
           height={500}
-          className='absolute -z-10 w-full'
+          className='absolute -z-10 w-full -mt-20'
         />
-        <div className='layout w-9/12 pt-20'>
-          <div className='flex rounded-[30px] bg-primary-200/20 drop-shadow-[4px_10px_10px_rgba(147,217,195,1)]'>
-            <div className='mt-28 flex w-2/5 flex-col gap-y-6 p-12'>
+        <div className='layout w-2/3 py-28'>
+          <div className='flex rounded-[30px] bg-primary-200/20 shadow-[4px_10px_10px_rgba(147,217,195,1)]'>
+            <Image
+              src='/images/forms-asset.svg'
+              alt='form-asset'
+              width={550}
+              height={300}
+              className='absolute -bottom-16 ml-4 drop-shadow-[6px_15px_10px_rgba(0,0,0,0.25)]'
+            />
+            <div className='mt-24 flex w-2/5 flex-col gap-y-6 p-12 '>
               <Typography
-                sizeVariant='h6'
+                sizeVariant='c1'
                 colorVariant='secondary'
                 className='font-semibold drop-shadow-[6px_15px_10px_rgba(0,0,0,0.25)]'
               >
                 Bergabung dengan kami
               </Typography>
               <Typography
-                sizeVariant='c1'
+                sizeVariant='c2'
                 colorVariant='secondary'
                 className='font-light'
               >
                 Sebarkan Kebaikan dan Kebahagiaan
               </Typography>
             </div>
-            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 py-32'>
+            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 py-36'>
               <Typography
                 sizeVariant='h2'
                 colorVariant='tertiary'
@@ -72,29 +81,53 @@ function Login() {
                 >
                   <Input
                     id='Nama'
-                    label='Name'
+                    label='nama'
                     placeholder='Nama Pengguna'
+                    helperText='Masukkan Nama Pengguna'
                     validation={{
-                      required: 'Nama Pengguna tidak boleh kosong',
-                      pattern: {
-                        value: /^[A-Za-z]+$/i,
-                        message: 'Name Format not Valid',
-                      },
+                      required: 'Masukkan Nama Pengguna anda',
                     }}
+                    className='py-4'
+                  />
+                  <InputPassword
+                    id='Password'
+                    label='password'
+                    placeholder='Kata Sandi'
+                    helperText='Masukkan Kata Sandi'
+                    validation={{
+                      required: 'Masukkan Kata Sandi anda',
+                    }}
+                    className='py-4'
                   />
 
-                  <button
-                    type='submit'
-                    className='w-full rounded-xl bg-primary-100 p-3 hover:bg-primary-100/70'
-                  >
-                    <Typography
-                      sizeVariant='c2'
-                      colorVariant='secondary'
-                      className='font-light'
+                  <div>
+                    <button
+                      type='submit'
+                      className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
                     >
-                      Masuk
-                    </Typography>
-                  </button>
+                      <Typography
+                        sizeVariant='c2'
+                        colorVariant='secondary'
+                      >
+                        Masuk
+                      </Typography>
+                    </button>
+                    <div className='mt-2 flex justify-end gap-2'>
+                      <Typography sizeVariant='c4'>
+                        Belum punya akun?
+                      </Typography>
+                      <Link href='/'>
+                        {' '}
+                        <Typography
+                          sizeVariant='c4'
+                          colorVariant='tertiary'
+                          className='hover:text-primary-600'
+                        >
+                          Buat akun
+                        </Typography>
+                      </Link>
+                    </div>
+                  </div>
                 </form>
               </FormProvider>
             </div>

@@ -20,7 +20,6 @@ function InputPassword({
   placeholder,
   validation,
   id,
-  type,
   helperText,
   showError = true,
   className,
@@ -43,15 +42,22 @@ function InputPassword({
         type={showPassword ? 'password' : 'text'}
         placeholder={placeholder}
         className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base 
-                            ${className}`}
+                   ${className}`}
       />
       <button onClick={toggleShow} className='absolute -ml-10 mt-4'>
-        <Typography sizeVariant='c1' className='text-gray-800/80 hover:text-gray-800'>
+        <Typography
+          sizeVariant='c1'
+          className='text-gray-800/80 hover:text-gray-800'
+        >
           {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
         </Typography>
       </button>
       {!(showError && error) && helperText && (
-        <Typography sizeVariant='c4' colorVariant='tertiary' className='mt-1 ml-2 '>
+        <Typography
+          sizeVariant='c4'
+          colorVariant='tertiary'
+          className='mt-1 ml-2'
+        >
           {helperText}
         </Typography>
       )}

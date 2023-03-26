@@ -2,6 +2,8 @@ import get from 'lodash.get';
 import React, { HTMLInputTypeAttribute } from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 
+import Typography from '@/components/Typography';
+
 interface Props {
   label?: string;
   placeholder?: string;
@@ -9,12 +11,16 @@ interface Props {
   id: string;
   type?: HTMLInputTypeAttribute;
   className?: string;
+  helperText?: string;
+  showError?: boolean;
 }
 
 function Input({
   placeholder,
   validation,
   id,
+  helperText,
+  showError = true,
   type = 'text',
   className,
 }: Props) {
@@ -32,15 +38,21 @@ function Input({
           id={id}
           placeholder={placeholder}
           type={type}
-          className={
-            `h-[45px] w-full pl-4 border-none rounded-xl bg-primary-200 text-sm py-6
-                            ${className}`}
+          className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base 
+                      ${className}`}
         />
-        {error && (
-        <p className='text-error'>
-          {error?.message?.toString()}
-        </p>
-      )}
+        {!(showError && error) && helperText && (
+          <Typography
+            sizeVariant='c4'
+            colorVariant='tertiary'
+            className='mt-1 ml-2 '
+          >
+            {helperText}
+          </Typography>
+        )}
+        {showError && error && (
+          <p className='text-error'>{error?.message?.toString()}</p>
+        )}
       </div>
     </div>
   );

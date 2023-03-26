@@ -73,7 +73,7 @@ function Footer() {
             {SocialMedia.map(({ link, icon }) => (
               <Link
                 key={`${link}${icon}`}
-                href='${link}'
+                href={`${link}`}
                 className='text-3xl text-white hover:text-primary-300'
               >
                 {icon}
