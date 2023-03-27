@@ -4,19 +4,27 @@ import React from 'react';
 import Typography from '@/components/Typography';
 
 interface ListDonationProps {
-  id: number;
+  index: number;
+  id: string;
   title: string;
   imgUrl: string;
   desc: string;
 }
 
-function ListDonationCard({ id, title, imgUrl, desc }: ListDonationProps) {
+function ListDonationCard({
+  index,
+  id,
+  title,
+  imgUrl,
+  desc,
+}: ListDonationProps) {
   return (
     <div className='pb-10'>
-      {id % 2 === 0 ? (
+      {index % 2 === 0 ? (
         <div className='flex px-10 transition duration-500 hover:scale-105'>
           <Image
             src={imgUrl}
+            id={id}
             alt='Donation 1'
             width={611}
             height={450}
@@ -45,7 +53,8 @@ function ListDonationCard({ id, title, imgUrl, desc }: ListDonationProps) {
       ) : (
         <div className='flex px-10 transition duration-500 hover:scale-105'>
           <Image
-            src='/images/Lp1.jpg'
+            src={imgUrl}
+            id={id}
             alt='Donation 1'
             width={611}
             height={450}

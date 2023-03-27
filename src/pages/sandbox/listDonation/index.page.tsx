@@ -40,8 +40,9 @@ export default function HomePage() {
         <div className='layout'>
           <SearchBar placeholder='Ketik Sesuatu' />
           <div className='pt-16'>
-            {listPhotos.map((photo) => (
+            {listPhotos.map((photo, index) => (
               <ListDonationCard
+                index={index}
                 id={photo.id}
                 key={photo.id}
                 title={photo.title}
