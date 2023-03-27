@@ -29,6 +29,10 @@ const sandboxPages = [
     title: 'Login',
     url: '/login',
   },
+  {
+    title: 'Register',
+    url: '/register',
+  },
 ];
 
 export default function HomePage() {

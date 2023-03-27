@@ -11,7 +11,7 @@ import Typography from '@/components/Typography';
 
 function Login() {
   const methods = useForm({
-    mode: 'onChange',
+    mode: 'onTouched',
   });
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -116,8 +116,7 @@ function Login() {
                       <Typography sizeVariant='c4'>
                         Belum punya akun?
                       </Typography>
-                      <Link href='/'>
-                        {' '}
+                      <Link href='/register'>
                         <Typography
                           sizeVariant='c4'
                           colorVariant='tertiary'

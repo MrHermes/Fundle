@@ -8,7 +8,7 @@ import Typography from '@/components/Typography';
 interface InputPasswordProps {
   label?: string;
   placeholder?: string;
-  validation: RegisterOptions;
+  validation?: RegisterOptions;
   id: string;
   type?: HTMLInputTypeAttribute;
   className?: string;
@@ -34,6 +34,7 @@ function InputPassword({
   const toggleShow = () => setShowPassword(!showPassword);
 
   return (
+    
     <div>
       <input
         {...register(id, validation)}
@@ -41,7 +42,7 @@ function InputPassword({
         id={id}
         type={showPassword ? 'password' : 'text'}
         placeholder={placeholder}
-        className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base 
+        className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base py-4
                    ${className}`}
       />
       <button onClick={toggleShow} className='absolute -ml-10 mt-4'>

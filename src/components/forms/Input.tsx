@@ -38,7 +38,7 @@ function Input({
           id={id}
           placeholder={placeholder}
           type={type}
-          className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base 
+          className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base py-4
                       ${className}`}
         />
         {!(showError && error) && helperText && (
