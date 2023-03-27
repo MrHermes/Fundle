@@ -20,14 +20,31 @@ function Login() {
   } = useForm();
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: unknown) => {
-    {
-      setShowSuccessModal(!showSuccessModal);
-    }
-    console.log(errors);
-    console.log({ data });
-    return;
-  };
+  const onSubmit = async (data: any) => {
+    try {
+       const response = await fetch("http://localhost:8888/api/user/login", {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+           email: data.Email,
+           password: data.Password,
+         }),
+       });
+       const responseData = await response.json();
+       console.log(responseData)
+       console.log(errors)
+       if (response.ok) {
+         localStorage.setItem("token", responseData.data.token);
+         alert('Berhasil Login');
+       } else {
+         throw new Error(responseData.message);
+       }
+     } catch (error) {
+       alert(error);
+     }
+   };
 
   return (
     <Layout>
@@ -80,14 +97,16 @@ function Login() {
                   className='flex flex-col gap-y-7'
                 >
                   <Input
-                    id='Nama'
-                    label='nama'
-                    placeholder='Nama Pengguna'
-                    helperText='Masukkan Nama Pengguna'
+                    id='Email'
+                    placeholder='Email'
+                    helperText='Masukkan Email'
                     validation={{
-                      required: 'Masukkan Nama Pengguna anda',
+                      required: 'Email tidak boleh kosong',
+                      pattern: {
+                        value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                        message: 'Format Email salah',
+                      },
                     }}
-                    className='py-4'
                   />
                   <InputPassword
                     id='Password'
