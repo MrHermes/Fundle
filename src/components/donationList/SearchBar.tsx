@@ -42,7 +42,7 @@ function SearchBar({ placeholder, type = 'text', className }: SearchBarProps) {
           onChange={handleInputChange}
           onKeyDown={handleEnterSearch}
           className={`${className} layout absolute -mt-7 w-11/12 rounded-3xl
-        border-none bg-primary-500 p-3 px-5 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]`}
+        border-none bg-primary-500 p-3 px-6 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]`}
         />
       </div>
       <button onClick={handleButtonSearch}>
@@ -51,7 +51,7 @@ function SearchBar({ placeholder, type = 'text', className }: SearchBarProps) {
           colorVariant='tertiary'
           className='flex items-center justify-end'
         >
-          <BiSearch className='absolute mr-5 mb-2 hover:text-primary-600' />
+          <BiSearch className='absolute mr-6 mb-2 hover:text-primary-600' />
         </Typography>
       </button>
 
