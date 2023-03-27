@@ -42,7 +42,7 @@ function SearchBar({ placeholder, type = 'text', className }: SearchBarProps) {
           onChange={handleInputChange}
           onKeyDown={handleEnterSearch}
           className={`${className} layout absolute -mt-7 w-11/12 rounded-3xl
-        border-none bg-primary-500 p-3 px-6 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]`}
+        border-none bg-primary-500 p-3 px-5 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]`}
         />
       </div>
       <button onClick={handleButtonSearch}>
