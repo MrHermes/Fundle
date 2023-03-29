@@ -41,6 +41,10 @@ const sandboxPages = [
     title: 'Detail Donation',
     url: '/detailDonation',
   },
+  {
+    title: 'Profile Account',
+    url: '/sandbox/profileAccount',
+  },
 ];
 
 export default function HomePage() {
