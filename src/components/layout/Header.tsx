@@ -6,33 +6,28 @@ import { useEffect, useState } from 'react';
 import Typography from '@/components/Typography';
 
 const NavbarLink = [
-  { link: '', title: 'Beranda' },
-  { link: '', title: 'Tentang' },
-  { link: '', title: 'Layanan' },
-  { link: '', title: 'Donasi' },
-  { link: '', title: 'Profil' },
+  { link: '/#Hero', title: 'Beranda' },
+  { link: '/#About', title: 'Tentang' },
+  { link: '/#Service', title: 'Layanan' },
+  { link: '/DonationList', title: 'Donasi' },
+  { link: '/Profile', title: 'Profil' },
 ];
 
 function Header() {
-  const [clientWindowHeight, setClientWindowHeight] = useState(0);
-
   const [backgroundTransparacy, setBackgroundTransparacy] = useState(true);
 
-  const handleScroll = () => {
-    setClientWindowHeight(window.scrollY);
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) setBackgroundTransparacy(false);
+      else setBackgroundTransparacy(true);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  });
 
-  useEffect(() => {
-    const backgroundTransparacyVar = clientWindowHeight / 600;
-
-    if (backgroundTransparacyVar < 1) setBackgroundTransparacy(true);
-    else setBackgroundTransparacy(false);
-  }, [clientWindowHeight]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <header className='sticky top-0 z-30 min-h-[4rem]'>
@@ -43,7 +38,7 @@ function Header() {
             ? 'rgba(6,163,113,0)'
             : 'rgba(6,163,113,1)',
         }}
-        transition={{ duration: 1, delay: 0.2, ease: 'easeInOut' }}
+        transition={{ duration: 1, delay: 0.1, ease: 'easeInOut' }}
       >
         <div className='layout flex flex-row flex-wrap justify-between py-6'>
           <Image
