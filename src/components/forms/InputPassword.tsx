@@ -45,7 +45,7 @@ function InputPassword({
         className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base py-4
                    ${className}`}
       />
-      <button onClick={toggleShow} className='absolute -ml-10 mt-4'>
+      <button onClick={toggleShow} type='button' className='absolute -ml-10 mt-4'>
         <Typography
           sizeVariant='c1'
           className='text-gray-800/80 hover:text-gray-800'

@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable unused-imports/no-unused-vars */
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Input from '@/components/forms/Input';
 import InputPassword from '@/components/forms/InputPassword';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
-
 
 function Login() {
   const methods = useForm({
@@ -24,29 +25,29 @@ function Login() {
 
   const onSubmit = async (data: any) => {
     try {
-       const response = await fetch("http://localhost:8888/api/user/login", {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify({
-           email: data.Email,
-           password: data.Password,
-         }),
-       });
-       const responseData = await response.json();
-       console.log(responseData)
-       console.log(errors)
-       if (response.ok) {
-         localStorage.setItem("token", responseData.data.token);
-         alert('Berhasil Login');
-       } else {
-         throw new Error(responseData.message);
-       }
-     } catch (error) {
-       alert(error);
-     }
-   };
+      // const response = await axios.post("https://fundlebackendapi-production.up.railway.app/api/user/login", {
+      const response = await axios.post(
+        'http://localhost:8888/api/user/login',
+        {
+          email: data.Email,
+          password: data.Password,
+        }
+      );
+      const responseData = response.data;
+      // console.log(responseData)
+      // console.log(response)
+      // console.log(errors)
+      if (response.status === 200) {
+        localStorage.setItem('token', responseData.data.token);
+        toast.success('Berhasil Login');
+        window.location.href = '/';
+      } else {
+        throw new Error(responseData.message);
+      }
+    } catch (error) {
+      toast.error('Email atau Password salah');
+    }
+  };
 
   return (
     <Layout>
@@ -124,16 +125,14 @@ function Login() {
                   />
 
                   <div>
-                    <Link href=''>
-                      <button
-                        type='submit'
-                        className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
-                      >
-                        <Typography sizeVariant='c2' colorVariant='secondary'>
-                          Masuk
-                        </Typography>
-                      </button>
-                    </Link>
+                    <button
+                      type='submit'
+                      className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
+                    >
+                      <Typography sizeVariant='c2' colorVariant='secondary'>
+                        Masuk
+                      </Typography>
+                    </button>
 
                     <div className='mt-2 flex justify-end gap-2'>
                       <Typography sizeVariant='c4'>
