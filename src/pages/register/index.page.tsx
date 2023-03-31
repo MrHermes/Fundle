@@ -32,6 +32,7 @@ function Register() {
   const [responseData, setResponseData] = useState<any>(null);
   const onSubmit = async (data: any) => {
     try {
+      // const response = await fetch(`${API_BaseUrl}api/user`, {
       const response = await fetch('http://localhost:8888/api/user', {
         method: 'POST',
         headers: {
@@ -73,7 +74,7 @@ function Register() {
         />
         <div className='layout w-2/3 py-28'>
           <div className='flex rounded-[30px] bg-primary-200/20 shadow-[4px_10px_10px_rgba(147,217,195,1)]'>
-            <div className='mt-[47rem] flex'>
+            <div className='ml-3 mt-[48rem] flex'>
               <Image
                 src='/svg/forms-asset.svg'
                 alt='form-asset'
@@ -98,7 +99,7 @@ function Register() {
                 Sebarkan Kebaikan dan Kebahagiaan
               </Typography>
             </div>
-            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 py-36'>
+            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 pt-32 pb-44'>
               <Typography
                 sizeVariant='h2'
                 colorVariant='tertiary'
@@ -159,7 +160,7 @@ function Register() {
                       },
                       pattern: {
                         value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                        message: 'Minimal 1 huruf',
+                        message: 'Minimal 1 angka',
                       },
                     }}
                   />
