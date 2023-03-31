@@ -49,6 +49,10 @@ const sandboxPages = [
     title: 'Payment',
     url: '/payment',
   },
+  {
+    title: 'Upload Donation',
+    url: '/sandbox/uploadDonation',
+  },
 ];
 
 export default function HomePage() {
