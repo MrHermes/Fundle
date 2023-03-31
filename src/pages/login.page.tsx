@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable unused-imports/no-unused-vars */
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import Input from '@/components/forms/Input';
@@ -9,12 +11,12 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
+
 function Login() {
   const methods = useForm({
     mode: 'onTouched',
   });
 
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const {
     formState: { errors },
   } = useForm();
@@ -56,17 +58,19 @@ function Login() {
           alt='forms-bg'
           width={500}
           height={500}
-          className='absolute -z-10 w-full -mt-20'
+          className='absolute -z-10 -mt-20 w-full'
         />
         <div className='layout w-2/3 py-28'>
           <div className='flex rounded-[30px] bg-primary-200/20 shadow-[4px_10px_10px_rgba(147,217,195,1)]'>
-            <Image
-              src='/images/forms-asset.svg'
-              alt='form-asset'
-              width={550}
-              height={300}
-              className='absolute -bottom-16 ml-4 drop-shadow-[6px_15px_10px_rgba(0,0,0,0.25)]'
-            />
+            <div className='ml-3 mt-[29rem] flex'>
+              <Image
+                src='/svg/forms-asset.svg'
+                alt='form-asset'
+                width={550}
+                height={300}
+                className='absolute drop-shadow-[6px_15px_10px_rgba(0,0,0,0.25)]'
+              />
+            </div>
             <div className='mt-24 flex w-2/5 flex-col gap-y-6 p-12 '>
               <Typography
                 sizeVariant='c1'
@@ -120,17 +124,17 @@ function Login() {
                   />
 
                   <div>
-                    <button
-                      type='submit'
-                      className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
-                    >
-                      <Typography
-                        sizeVariant='c2'
-                        colorVariant='secondary'
+                    <Link href=''>
+                      <button
+                        type='submit'
+                        className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
                       >
-                        Masuk
-                      </Typography>
-                    </button>
+                        <Typography sizeVariant='c2' colorVariant='secondary'>
+                          Masuk
+                        </Typography>
+                      </button>
+                    </Link>
+
                     <div className='mt-2 flex justify-end gap-2'>
                       <Typography sizeVariant='c4'>
                         Belum punya akun?
