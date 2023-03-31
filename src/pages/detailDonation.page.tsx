@@ -11,6 +11,7 @@ import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
 import { listDonatur } from '@/constant/listDonatur';
+import UpperPart from '@/components/upperDetailDonation/upperPart';
 
 function detailDonation() {
   const data = floor(0.1 * 100);
@@ -20,88 +21,19 @@ function detailDonation() {
       <Seo />
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
       <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pt-20 pb-10'>
-        <Image
-          src='/images/dummy-poster.svg' //Foto_Event
-          alt='Poster Image'
-          width={640}
-          height={480}
-          className='static w-full'
+        <UpperPart 
+          namaEvent={''} 
+          fotoEvent={''} 
+          jumlahDonasi={0} 
+          targetDonasi={0} 
+          sisaHari={0} 
+          jumlahDonatur={0} 
+          desc={''} 
         />
-        {/* Nama_Event */}
-        <Typography
-          sizeVariant='h2'
-          colorVariant='primary'
-          className='text-wrap my-5 font-bold'
-        >
-          Save Malta Children From Hunger
-        </Typography>
-        <div className='flex flex-col justify-between gap-y-4 lg:flex-row lg:gap-y-0'>
-          <div>
-            {/* Jumlah_Donasi */}
-            <Typography
-              sizeVariant='h4'
-              colorVariant='tertiary'
-              className='font-bold'
-            >
-              Rp. 1000000000
-            </Typography>
-            {/* Target_Donasi */}
-            <Typography sizeVariant='c2' colorVariant='primary' className=''>
-              Terkumpul dari Rp. 1000000000000
-            </Typography>
-          </div>
-
-          <div className='flex flex-row justify-center lg:justify-end'>
-            <div className='mx-2 flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl bg-primary-500 font-semibold shadow-xl transition duration-500 hover:scale-110'>
-              <div className='my-auto text-3xl text-primary-100'>
-                <RiHandHeartLine />
-              </div>
-              <div className='my-auto'>
-                {/* Jumlah_Donatur */}
-                <Typography
-                  sizeVariant='c1'
-                  colorVariant='primary'
-                  className=''
-                >
-                  4517
-                </Typography>
-                <Typography
-                  sizeVariant='c3'
-                  colorVariant='primary'
-                  className=''
-                >
-                  Donasi
-                </Typography>
-              </div>
-            </div>
-            <div className='mx-2 flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl bg-primary-500 font-semibold shadow-xl transition duration-500 hover:scale-110'>
-              <div className='my-auto text-3xl text-primary-100'>
-                <BiTimeFive />
-              </div>
-              <div className='my-auto'>
-                {/* Sisa_hari -> integer*/}
-                <Typography
-                  sizeVariant='c1'
-                  colorVariant='primary'
-                  className=''
-                >
-                  12 Hari
-                </Typography>
-                <Typography
-                  sizeVariant='c3'
-                  colorVariant='primary'
-                  className=''
-                >
-                  Tersisa
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Bar progress uang */}
         <div className='my-6 h-2 w-full'>
-          <ProgressBar progress={data} classProperty='bg-primary-100' />
+          <ProgressBar progress={data} />
         </div>
 
         <div className='rounded-xl bg-primary-500 p-5 transition duration-500 hover:scale-105'>

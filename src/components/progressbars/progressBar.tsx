@@ -1,16 +1,15 @@
 import React from 'react';
 
 type ProgressBarProp = {
-  classProperty: string;
   progress: number;
 };
 
-function ProgressBar({ progress, classProperty }: ProgressBarProp) {
+function ProgressBar({ progress }: ProgressBarProp) {
   return (
     <div className='h-2 w-full rounded-xl bg-primary-500'>
       <div
         style={{ width: `${progress}%` }}
-        className={`${classProperty} h-full rounded-xl`}
+        className="bg-primary-100 h-full rounded-xl"
       ></div>
     </div>
   );
