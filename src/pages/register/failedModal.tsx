@@ -60,7 +60,7 @@ const FailedModal = ({ message, onClick }: Props) => {
               className='px-4 py-2'
             >
               <Typography colorVariant='secondary' className='font-medium'>
-                OK
+                Kembali
               </Typography>
             </ButtonSubmit>
           </div>

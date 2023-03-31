@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -8,25 +9,56 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
+import FailedModal from '@/pages/register/failedModal';
+import SuccessModal from '@/pages/register/successModal';
+
+interface ApiResponse {
+  message: string;
+  // any other properties in the response
+}
+
 function Register() {
   const methods = useForm({
     mode: 'onTouched',
   });
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showFailedModal, setShowFailedModal] = useState(false);
   const {
+    // eslint-disable-next-line unused-imports/no-unused-vars
     formState: { errors },
   } = useForm();
   const { handleSubmit } = methods;
-
-  const onSubmit = (data: unknown) => {
-    {
-      setShowSuccessModal(!showSuccessModal);
+  const [responseData, setResponseData] = useState<any>(null);
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await fetch('http://localhost:8888/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nama: data.nama,
+          no_telp: data.noTelp,
+          email: data.email,
+          password: data.password,
+          confirm_password: data.confirmPassword,
+        }),
+      });
+      const responseData = (await response.json()) as ApiResponse;
+      setResponseData(responseData);
+      // console.log(responseData);
+      // console.log(errors);
+      if (response.ok) {
+        setShowSuccessModal(true);
+      } else {
+        setShowFailedModal(true);
+      }
+    } catch (error) {
+      // console.log(error);
     }
-    console.log(errors);
-    console.log({ data });
-    return;
   };
+
   return (
     <Layout>
       <Seo />
@@ -41,14 +73,16 @@ function Register() {
         />
         <div className='layout w-2/3 py-28'>
           <div className='flex rounded-[30px] bg-primary-200/20 shadow-[4px_10px_10px_rgba(147,217,195,1)]'>
-            <Image
-              src='/images/forms-asset.svg'
-              alt='form-asset'
-              width={550}
-              height={300}
-              className='absolute -bottom-1/2 mb-16 ml-4 drop-shadow-[6px_15px_10px_rgba(0,0,0,0.25)]'
-            />
-            <div className='py-36 flex w-2/5 flex-col gap-y-6 p-12 '>
+            <div className='mt-[47rem] flex'>
+              <Image
+                src='/svg/forms-asset.svg'
+                alt='form-asset'
+                width={550}
+                height={300}
+                className='absolute drop-shadow-[6px_15px_10px_rgba(0,0,0,0.25)]'
+              />
+            </div>
+            <div className='flex w-2/5 flex-col gap-y-6 p-12 py-36 '>
               <Typography
                 sizeVariant='c1'
                 colorVariant='secondary'
@@ -70,7 +104,7 @@ function Register() {
                 colorVariant='tertiary'
                 className='pb-20 text-center font-semibold'
               >
-                Sign In
+                Sign Up
               </Typography>
               <FormProvider {...methods}>
                 <form
@@ -93,7 +127,7 @@ function Register() {
                       required: 'Nomor Telepon tidak boleh kosong',
                       minLength: {
                         value: 11,
-                        message: 'Masukkan Nomor telepon yang benar'
+                        message: 'Masukkan Nomor telepon yang benar',
                       },
                       pattern: {
                         value: /[0-9]/,
@@ -136,18 +170,27 @@ function Register() {
                     validation={{
                       required: 'Masukkan Konfirmasi Kata Sandi',
                       validate: (value) =>
-                      value === methods.getValues('password') ||
-                      'Kata Sandi tidak sama',
+                        value === methods.getValues('password') ||
+                        'Kata Sandi tidak sama',
                     }}
                   />
                   <button
                     type='submit'
-                    className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
+                    className='w-full rounded-xl bg-primary-100 p-3 hover:bg-primary-600'
                   >
                     <Typography sizeVariant='c2' colorVariant='secondary'>
                       Daftar
                     </Typography>
                   </button>
+                  {showSuccessModal && (
+                    <SuccessModal message='Silakan lakukan Sign In kembali' />
+                  )}
+                  {showFailedModal && (
+                    <FailedModal
+                      onClick={() => setShowFailedModal(false)}
+                      message={responseData?.message}
+                    />
+                  )}
                 </form>
               </FormProvider>
             </div>
