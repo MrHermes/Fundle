@@ -1,5 +1,6 @@
 import Typography from "@/components/Typography";
 import React, { ChangeEvent, useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { IoCaretBackCircleOutline } from "react-icons/io5"
 
 const BankList = [
@@ -19,8 +20,17 @@ interface PopUpBankProp {
 function PopUpBank({ isOpen, onClose } : PopUpBankProp){
   if (!isOpen) return null;
 
-  const [selected, setSelected] = useState('NULL');
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+
+  const [selected, setSelected] = useState('null');
   const handleRadio = ( event : ChangeEvent<HTMLInputElement>) => {
+    console.log("Selected value: ", event.target.value); // Check the value being selected
+    console.log("Selected state: ", selected); // Check the value being assigned to state
+    console.log("Selected value2: ", event.target.value); // Check the value being selected
     setSelected(event.target.value);
   }
 
@@ -45,24 +55,30 @@ function PopUpBank({ isOpen, onClose } : PopUpBankProp){
             style={ selected === value ? { outline: '2px solid' } : { outline: '2px solid transparent' } }
             className="flex flex-row bg-primary-200 m-3 rounded-xl shadow-xl p-2 min-w-[20rem] hover:shadow-2xl"
           >
-            <input
-              type="radio"
-              id={value}
-              name="nama_bank"
-              value={value}
-              checked={selected === value}
-              onChange={handleRadio}
-              className='invisible'
-            />
-            <label htmlFor={value} className='w-full h-full cursor-pointer'>
+              <input
+                {...register("nama_bank")}
+                type="radio"
+                id={value}
+                name="nama_bank"
+                value={value}
+                checked={selected == value}
+                onChange={handleRadio}
+                className='absolute -top-1/2 cursor-pointer -x'
+              />
+              <label htmlFor={value} className='w-full h-full cursor-pointer'>
+                <Typography sizeVariant='c3' colorVariant='primary'>
+                  {value}
+                </Typography>
+              </label>
+            {/* <label htmlFor={value} className='w-full h-full cursor-pointer'>
               <Typography sizeVariant='c3' colorVariant='primary'>
                 {value}
               </Typography>
-            </label>
+            </label> */}
           </div>
         ))}
         <div className='flex justify-center'>
-            <button className='w-25 rounded-xl bg-secondary-100 py-3 px-5 mt-5'>
+            <button type="submit" className='w-25 rounded-xl bg-secondary-100 py-3 px-5 mt-5'>
               <Typography sizeVariant='c4' colorVariant='secondary'>
                 Lanjut
               </Typography>

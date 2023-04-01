@@ -1,3 +1,5 @@
+import Input from '@/components/forms/Input';
+import InputNominal from '@/components/forms/InputNominal';
 import Layout from '@/components/layout/Layout';
 import PopUpBank from '@/components/popUp/bankList';
 import ProgressBar from '@/components/progressbars/progressBar';
@@ -5,34 +7,25 @@ import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 import UpperPart from '@/components/upperDetailDonation/upperPart';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 function Payment(){
-  const [nominal, setNominal] = useState(10000)
   const [isOpen, setOpen] = useState(false)
 
-  const methods = useForm({
-    mode: 'onTouched',
-  });
+  const methods = useForm();
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const {
-    register,
     formState: { errors },
   } = useForm();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const result = event.target.value.replace(/[^0-9]/gi, '');
-    var resultNum = Number(result);
-    setNominal(resultNum);
-  };
-
   const openModal = () => setOpen(true)
   const closeModal = () => setOpen(false)
-  
+
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: unknown) => {
+  const onSubmit = (data: any) => {
+    // console.log{ data.nama_bank };
     console.log(errors);
     console.log({ data });
   };
@@ -64,32 +57,17 @@ function Payment(){
           >
             Masukkan Nominal Donasi
           </Typography>
-          <form 
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full mt-2"
-          >
-          <div className='bg-primary-200 p-4 rounded-xl'>
-            <div className='flex flex-row justify-between'>
-              <Typography
-                sizeVariant='h4'
-                colorVariant='primary'
-                className='font-bold mr-3'
-              >
-                Rp.
-              </Typography>
-                <input
-                  id="nominal"
-                  type="text"
-                  value={nominal}
-                  onChange={handleInputChange}
-                  className="border-transparent bg-inherit text-right text-2xl font-bold focus:shadow-none w-full"
-                >
-                </input>
-            </div>
-            {/* Pop Up Window */}
-            <PopUpBank isOpen={isOpen} onClose={closeModal} />
-          </div>
-          </form>
+          <FormProvider {...methods}>
+            <form 
+              onSubmit={handleSubmit(onSubmit)}
+              className="w-full mt-2"
+            >
+              <InputNominal/>
+              {/* Pop Up Window */}
+              <PopUpBank isOpen={isOpen} onClose={closeModal} />
+            </form>
+          </FormProvider>
+          
           <div className='flex justify-center'>
             <button className='w-25 rounded-xl bg-secondary-100 py-3 px-5 mt-5' onClick={openModal}>
               <Typography sizeVariant='c2' colorVariant='secondary'>
