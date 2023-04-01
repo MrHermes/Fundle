@@ -1,15 +1,16 @@
 import Typography from "@/components/Typography";
 import React, { ChangeEvent, useState } from "react";
+import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import { IoCaretBackCircleOutline } from "react-icons/io5"
 
 const BankList = [
-  { value: 'OVO'},
-  { value: 'GO-PAY'},
-  { value: 'Mandiri'},
-  { value: 'BRI'},
-  { value: 'BSI'},
-  { value: 'BCA'}
+  { value: 'OVO', icon: "/images/ovo.svg"},
+  { value: 'GO-PAY', icon: "/images/gopay.svg"},
+  { value: 'Mandiri', icon: "/images/mandiri.svg"},
+  { value: 'BRI', icon: "/images/bri.svg"},
+  { value: 'BSI', icon: "/images/bsi.svg"},
+  { value: 'BCA', icon: "/images/bca.svg"}
 ];
 
 interface PopUpBankProp {
@@ -49,32 +50,36 @@ function PopUpBank({ isOpen, onClose } : PopUpBankProp){
             Pilih Metode Pembayaran
           </Typography>
         </div>
-        {BankList.map(({ value }) => (
+        {BankList.map(({ value, icon }) => (
           <div 
             key={value} 
             style={ selected === value ? { outline: '2px solid' } : { outline: '2px solid transparent' } }
-            className="flex flex-row bg-primary-200 m-3 rounded-xl shadow-xl p-2 min-w-[20rem] hover:shadow-2xl"
+            className="flex flex-row bg-primary-200 m-3 rounded-xl shadow-xl px-3 py-2 min-w-[20rem] hover:shadow-2xl"
           >
-              <input
-                {...register("nama_bank")}
-                type="radio"
-                id={value}
-                name="nama_bank"
-                value={value}
-                checked={selected == value}
-                onChange={handleRadio}
-                className='absolute -top-1/2 cursor-pointer -x'
+            <div className="min-w-40 px-auto">
+              <Image 
+                src={icon} 
+                alt={value} 
+                width={70} 
+                height={40} 
+                className="w-20 h-10"
               />
-              <label htmlFor={value} className='w-full h-full cursor-pointer'>
-                <Typography sizeVariant='c3' colorVariant='primary'>
-                  {value}
-                </Typography>
-              </label>
-            {/* <label htmlFor={value} className='w-full h-full cursor-pointer'>
+            </div>
+            <input
+              {...register("nama_bank")}
+              type="radio"
+              id={value}
+              name="nama_bank"
+              value={value}
+              checked={selected == value}
+              onChange={handleRadio}
+              className='absolute -top-1/2 cursor-pointer -x'
+            />
+            <label htmlFor={value} className='w-full h-full cursor-pointer ml-3 my-auto'>
               <Typography sizeVariant='c3' colorVariant='primary'>
                 {value}
               </Typography>
-            </label> */}
+            </label>
           </div>
         ))}
         <div className='flex justify-center'>

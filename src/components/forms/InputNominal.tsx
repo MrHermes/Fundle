@@ -9,14 +9,6 @@ function InputNominal() {
     formState: { errors },
   } = useFormContext();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const result = event.target.value.replace(/[^0-9]/gi, '');
-    var resultNum = Number(result);
-    if (resultNum <= 10000) resultNum = 10000;
-    if (resultNum >= 1000000000) resultNum = 1000000000; 
-    setNominal(resultNum);
-  };
-
   return(
     <div className='bg-primary-200 p-4 rounded-xl'>
       <div className='flex flex-row justify-between h-max'>
@@ -29,20 +21,38 @@ function InputNominal() {
         </Typography>
         <div className='block w-full'>
           <input
-            {...register("nominal")}
+            {...register("nominal",{
+              required: true,
+              min: 1000,
+              max: 1000000000,
+            })}
             id="nominal"
-            type="text"
-            value={nominal}
-            onChange={handleInputChange}
-            className="border-transparent bg-inherit text-right text-3xl font-bold focus:shadow-none w-full"
+            type="number"
+            defaultValue={nominal}
+            className="appearance-none border-transparent bg-inherit text-right text-3xl font-bold focus:shadow-none w-full"
           />
-          <Typography
-            sizeVariant='c4'
-            colorVariant='secondary'
-            className='text-red-500 text-right font-bold'
-          >
-            Nominal minimum adalah 100000 dan nominal maksimal adalah 1000000000
-          </Typography>
+            {errors && (errors.nominal?.type === "min" || errors.nominal?.type === "required")&& 
+              (
+                <Typography
+                  sizeVariant='c4'
+                  colorVariant='primary'
+                  className='text-red-500 text-right font-bold'
+                >
+                  Nominal minimum adalah Rp. 10000
+                </Typography>
+              )
+            }
+            {errors && errors.nominal?.type === "max" && 
+              (
+                <Typography
+                  sizeVariant='c4'
+                  colorVariant='primary'
+                  className='text-red-500 text-right font-bold'
+                >
+                  Nominal maksimum adalah Rp. 1000000000
+                </Typography>
+              )
+            } 
         </div>
       </div>
     </div>

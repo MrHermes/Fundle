@@ -12,7 +12,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 function Payment(){
   const [isOpen, setOpen] = useState(false)
 
-  const methods = useForm();
+  const methods = useForm({
+    mode: "onTouched"
+  })
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const {
@@ -40,8 +42,8 @@ function Payment(){
           fotoEvent={''} 
           jumlahDonasi={0} 
           targetDonasi={0} 
-          sisaHari={0} 
-          jumlahDonatur={0} 
+          sisaHari={12} 
+          jumlahDonatur={4517} 
           desc={''} 
         />
 
