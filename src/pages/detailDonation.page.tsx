@@ -6,9 +6,9 @@ import Layout from '@/components/layout/Layout';
 import ProgressBar from '@/components/progressbars/progressBar';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
+import UpperPart from '@/components/upperDetailDonation/upperPart';
 
 import { listDonatur } from '@/constant/listDonatur';
-import UpperPart from '@/components/upperDetailDonation/upperPart';
 
 function detailDonation() {
   const data = floor(0.1 * 100);
@@ -18,13 +18,13 @@ function detailDonation() {
       <Seo />
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
       <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pt-20 pb-10'>
-        <UpperPart 
-          namaEvent='Save Malta Children From Hunger' 
-          fotoEvent='/images/dummy-poster.svg' 
-          jumlahDonasi={1000000000} 
-          targetDonasi={1000000000000} 
-          sisaHari={12} 
-          jumlahDonatur={4517} 
+        <UpperPart
+          namaEvent='Save Malta Children From Hunger'
+          fotoEvent='/images/dummy-poster.svg'
+          jumlahDonasi={1000000000}
+          targetDonasi={1000000000000}
+          sisaHari={12}
+          jumlahDonatur={4517}
         />
 
         {/* Bar progress uang */}
