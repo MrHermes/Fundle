@@ -1,8 +1,5 @@
 import { floor } from 'lodash';
-import Image from 'next/image';
 import React from 'react';
-import { BiTimeFive } from 'react-icons/bi';
-import { RiHandHeartLine } from 'react-icons/ri';
 
 import ButtonLink from '@/components/buttons/ButtonLink';
 import Layout from '@/components/layout/Layout';
@@ -22,13 +19,12 @@ function detailDonation() {
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
       <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pt-20 pb-10'>
         <UpperPart 
-          namaEvent={''} 
-          fotoEvent={''} 
-          jumlahDonasi={0} 
-          targetDonasi={0} 
-          sisaHari={0} 
-          jumlahDonatur={0} 
-          desc={''} 
+          namaEvent='Save Malta Children From Hunger' 
+          fotoEvent='/images/dummy-poster.svg' 
+          jumlahDonasi={1000000000} 
+          targetDonasi={1000000000000} 
+          sisaHari={12} 
+          jumlahDonatur={4517} 
         />
 
         {/* Bar progress uang */}

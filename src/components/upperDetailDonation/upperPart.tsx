@@ -1,8 +1,9 @@
-import React from "react";
-import Typography from "@/components/Typography";
-import Image from "next/image";
-import { RiHandHeartLine } from "react-icons/ri";
-import { BiTimeFive } from "react-icons/bi";
+import Image from 'next/image';
+import React from 'react';
+import { BiTimeFive } from 'react-icons/bi';
+import { RiHandHeartLine } from 'react-icons/ri';
+
+import Typography from '@/components/Typography';
 
 interface upperPartProp {
   namaEvent: string;
@@ -11,22 +12,20 @@ interface upperPartProp {
   targetDonasi: number;
   sisaHari: number;
   jumlahDonatur: number;
-  desc: string;
 }
 
-function UpperPart(
-  {namaEvent,
+function UpperPart({
+  namaEvent,
   fotoEvent,
   jumlahDonasi,
   targetDonasi,
   sisaHari,
   jumlahDonatur,
-  desc} : upperPartProp
-){
-  return(
+}: upperPartProp) {
+  return (
     <div>
       <Image
-        src='/images/dummy-poster.svg' //Foto_Event
+        src={fotoEvent} //Foto_Event
         alt='Poster Image'
         width={640}
         height={480}
@@ -38,7 +37,7 @@ function UpperPart(
         colorVariant='primary'
         className='text-wrap my-5 font-bold'
       >
-        Save Malta Children From Hunger
+        {namaEvent}
       </Typography>
       <div className='flex flex-col justify-between gap-y-4 lg:flex-row lg:gap-y-0'>
         <div>
@@ -48,11 +47,11 @@ function UpperPart(
             colorVariant='tertiary'
             className='font-bold'
           >
-            Rp. 1000000000
+            Rp. {jumlahDonasi}
           </Typography>
           {/* Target_Donasi */}
           <Typography sizeVariant='c2' colorVariant='primary' className=''>
-            Terkumpul dari Rp. 1000000000000
+            Terkumpul dari Rp. {targetDonasi}
           </Typography>
         </div>
         <div className='flex flex-row justify-center lg:justify-end'>
@@ -62,16 +61,10 @@ function UpperPart(
             </div>
             <div className='my-auto'>
               {/* Jumlah_Donatur */}
-              <Typography
-                sizeVariant='c1'
-                colorVariant='primary'
-              >
+              <Typography sizeVariant='c1' colorVariant='primary'>
                 {jumlahDonatur}
               </Typography>
-              <Typography
-                sizeVariant='c3'
-                colorVariant='primary'
-              >
+              <Typography sizeVariant='c3' colorVariant='primary'>
                 Donasi
               </Typography>
             </div>
@@ -82,16 +75,10 @@ function UpperPart(
             </div>
             <div className='my-auto'>
               {/* Sisa_hari -> integer*/}
-              <Typography
-                sizeVariant='c1'
-                colorVariant='primary'
-              >
+              <Typography sizeVariant='c1' colorVariant='primary'>
                 {sisaHari} Hari
               </Typography>
-              <Typography
-                sizeVariant='c3'
-                colorVariant='primary'
-              >
+              <Typography sizeVariant='c3' colorVariant='primary'>
                 Tersisa
               </Typography>
             </div>
@@ -102,4 +89,4 @@ function UpperPart(
   );
 }
 
-export default UpperPart
+export default UpperPart;

@@ -1,4 +1,7 @@
-import Input from '@/components/forms/Input';
+/* eslint-disable no-console */
+import React, { useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+
 import InputNominal from '@/components/forms/InputNominal';
 import Layout from '@/components/layout/Layout';
 import PopUpBank from '@/components/popUp/bankList';
@@ -6,52 +9,49 @@ import ProgressBar from '@/components/progressbars/progressBar';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 import UpperPart from '@/components/upperDetailDonation/upperPart';
-import React, { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
 
-function Payment(){
-  const [isOpen, setOpen] = useState(false)
+function Payment() {
+  const [isOpen, setOpen] = useState(false);
 
   const methods = useForm({
-    mode: "onTouched"
-  })
+    mode: 'onTouched',
+  });
 
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const {
     formState: { errors },
   } = useForm();
 
-  const openModal = () => setOpen(true)
-  const closeModal = () => setOpen(false)
+  const openModal = () => setOpen(true);
+  const closeModal = () => setOpen(false);
 
   const { handleSubmit } = methods;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
     // console.log{ data.nama_bank };
     console.log(errors);
     console.log({ data });
   };
 
-  return(
+  return (
     <Layout>
       <Seo />
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
-      <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pt-20 pb-10'>
-        <UpperPart 
-          namaEvent={''} 
-          fotoEvent={''} 
-          jumlahDonasi={0} 
-          targetDonasi={0} 
-          sisaHari={12} 
-          jumlahDonatur={4517} 
-          desc={''} 
+      <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pb-10 pt-20'>
+        <UpperPart
+          namaEvent='Save Malta Children From Hunger'
+          fotoEvent='/images/dummy-poster.svg'
+          jumlahDonasi={1000000000}
+          targetDonasi={1000000000000}
+          sisaHari={12}
+          jumlahDonatur={4517}
         />
 
         <div className='my-6 h-2 w-full'>
           <ProgressBar progress={10} />
         </div>
 
-        <div className='bg-primary-500 rounded-xl mt-5 p-5'>
+        <div className='mt-5 rounded-xl bg-primary-500 p-5'>
           <Typography
             sizeVariant='h6'
             colorVariant='primary'
@@ -60,18 +60,18 @@ function Payment(){
             Masukkan Nominal Donasi
           </Typography>
           <FormProvider {...methods}>
-            <form 
-              onSubmit={handleSubmit(onSubmit)}
-              className="w-full mt-2"
-            >
-              <InputNominal/>
+            <form onSubmit={handleSubmit(onSubmit)} className='mt-2 w-full'>
+              <InputNominal />
               {/* Pop Up Window */}
               <PopUpBank isOpen={isOpen} onClose={closeModal} />
             </form>
           </FormProvider>
-          
+
           <div className='flex justify-center'>
-            <button className='w-25 rounded-xl bg-secondary-100 py-3 px-5 mt-5' onClick={openModal}>
+            <button
+              className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3'
+              onClick={openModal}
+            >
               <Typography sizeVariant='c2' colorVariant='secondary'>
                 Lanjutkan Pembayaran
               </Typography>
@@ -83,4 +83,4 @@ function Payment(){
   );
 }
 
-export default Payment
+export default Payment;

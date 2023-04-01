@@ -1,9 +1,8 @@
 import Typography from "@/components/Typography";
-import React, { useState } from "react";
+import React from "react";
 import { useFormContext } from "react-hook-form";
 
 function InputNominal() {
-  const [nominal, setNominal] = useState(10000);
   const {
     register,
     formState: { errors },
@@ -28,7 +27,7 @@ function InputNominal() {
             })}
             id="nominal"
             type="number"
-            defaultValue={nominal}
+            defaultValue={10000}
             className="appearance-none border-transparent bg-inherit text-right text-3xl font-bold focus:shadow-none w-full"
           />
             {errors && (errors.nominal?.type === "min" || errors.nominal?.type === "required")&& 
