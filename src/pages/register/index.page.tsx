@@ -9,6 +9,7 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
+import { API_BaseUrl } from '@/constant/env';
 import FailedModal from '@/pages/register/failedModal';
 import SuccessModal from '@/pages/register/successModal';
 
@@ -32,8 +33,8 @@ function Register() {
   const [responseData, setResponseData] = useState<any>(null);
   const onSubmit = async (data: any) => {
     try {
-      // const response = await fetch(`${API_BaseUrl}api/user`, {
-      const response = await fetch('http://localhost:8888/api/user', {
+      const response = await fetch(`${API_BaseUrl}api/user`, {
+        // const response = await fetch('http://localhost:8888/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

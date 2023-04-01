@@ -13,6 +13,8 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
+import { API_BaseUrl } from '@/constant/env';
+
 function Login() {
   const methods = useForm({
     mode: 'onTouched',
@@ -25,14 +27,11 @@ function Login() {
 
   const onSubmit = async (data: any) => {
     try {
-      // const response = await axios.post("https://fundlebackendapi-production.up.railway.app/api/user/login", {
-      const response = await axios.post(
-        'http://localhost:8888/api/user/login',
-        {
-          email: data.Email,
-          password: data.Password,
-        }
-      );
+      const response = await axios.post(`${API_BaseUrl}api/user/login`, {
+        // const response = await axios.post('http://localhost:8888/api/user/login',{
+        email: data.Email,
+        password: data.Password,
+      });
       const responseData = response.data;
       // console.log(responseData)
       // console.log(response)
