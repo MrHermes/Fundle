@@ -37,7 +37,7 @@ function Payment() {
     <Layout>
       <Seo />
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
-      <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pb-10 pt-20'>
+      <main className='mx-auto mt-14 w-2/3 rounded-2xl bg-primary-200 px-[10vh] pb-10 pt-20'>
         <UpperPart
           namaEvent='Save Malta Children From Hunger'
           fotoEvent='/images/dummy-poster.svg'
@@ -51,9 +51,9 @@ function Payment() {
           <ProgressBar progress={10} />
         </div>
 
-        <div className='mt-5 rounded-xl bg-primary-500 p-5'>
+        <div className='mt-5 w-full rounded-xl bg-primary-500 p-5'>
           <Typography
-            sizeVariant='h6'
+            sizeVariant='c2'
             colorVariant='primary'
             className='font-bold'
           >
@@ -72,7 +72,7 @@ function Payment() {
               className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3'
               onClick={openModal}
             >
-              <Typography sizeVariant='c2' colorVariant='secondary'>
+              <Typography sizeVariant='c3' colorVariant='secondary'>
                 Lanjutkan Pembayaran
               </Typography>
             </button>

@@ -1,6 +1,7 @@
-import Typography from "@/components/Typography";
-import React from "react";
-import { useFormContext } from "react-hook-form";
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import Typography from '@/components/Typography';
 
 function InputNominal() {
   const {
@@ -8,54 +9,52 @@ function InputNominal() {
     formState: { errors },
   } = useFormContext();
 
-  return(
-    <div className='bg-primary-200 p-4 rounded-xl'>
-      <div className='flex flex-row justify-between h-max'>
+  return (
+    <div className='rounded-xl bg-primary-200 p-2'>
+      <div className='flex h-max flex-row justify-between'>
         <Typography
-          sizeVariant='h3'
+          sizeVariant='c2'
           colorVariant='primary'
-          className='font-bold mr-3 my-auto'
+          className='my-auto mr-3 font-bold'
         >
           Rp.
         </Typography>
         <div className='block w-full'>
           <input
-            {...register("nominal",{
+            {...register('nominal', {
               required: true,
               min: 1000,
               max: 1000000000,
             })}
-            id="nominal"
-            type="number"
+            id='nominal'
+            type='number'
             defaultValue={10000}
-            className="appearance-none border-transparent bg-inherit text-right text-3xl font-bold focus:shadow-none w-full"
+            className='w-full appearance-none border-transparent bg-inherit text-right text-xl font-bold focus:shadow-none'
           />
-            {errors && (errors.nominal?.type === "min" || errors.nominal?.type === "required")&& 
-              (
-                <Typography
-                  sizeVariant='c4'
-                  colorVariant='primary'
-                  className='text-red-500 text-right font-bold'
-                >
-                  Nominal minimum adalah Rp. 10000
-                </Typography>
-              )
-            }
-            {errors && errors.nominal?.type === "max" && 
-              (
-                <Typography
-                  sizeVariant='c4'
-                  colorVariant='primary'
-                  className='text-red-500 text-right font-bold'
-                >
-                  Nominal maksimum adalah Rp. 1000000000
-                </Typography>
-              )
-            } 
+          {errors &&
+            (errors.nominal?.type === 'min' ||
+              errors.nominal?.type === 'required') && (
+              <Typography
+                sizeVariant='c4'
+                colorVariant='primary'
+                className='text-right font-bold text-red-500'
+              >
+                Nominal minimum adalah Rp. 10000
+              </Typography>
+            )}
+          {errors && errors.nominal?.type === 'max' && (
+            <Typography
+              sizeVariant='c4'
+              colorVariant='primary'
+              className='text-right font-bold text-red-500'
+            >
+              Nominal maksimum adalah Rp. 1000000000
+            </Typography>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default InputNominal
+export default InputNominal;
