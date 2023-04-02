@@ -8,7 +8,7 @@ import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
 import Link from 'next/link';
-import { DataType, DonationListType, get3Event } from '@/pages/api/event';
+import { DonationListType, get3Event } from '@/pages/api/event';
 import { useEffect, useState } from 'react';
 
 export default function HomePage() {
