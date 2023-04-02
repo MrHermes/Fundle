@@ -76,7 +76,7 @@ function UpperPart({
             <div className='my-[1vh]'>
               {/* Sisa_hari -> integer*/}
               <Typography sizeVariant='c3' colorVariant='primary'>
-                {sisaHari} Hari
+                {sisaHari}
               </Typography>
               <Typography sizeVariant='c3' colorVariant='primary'>
                 Tersisa

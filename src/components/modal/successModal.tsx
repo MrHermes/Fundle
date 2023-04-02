@@ -6,11 +6,12 @@ import Typography from '@/components/Typography';
 interface Props {
   message: string;
   href: string;
+  onClose?: () => void;
 }
 
-const SuccessModal = ({ message, href }: Props) => {
+const SuccessModal = ({ message, href,  onClose}: Props) => {
   return (
-    <div className='fixed inset-0 z-10 overflow-y-auto'>
+    <div className='fixed inset-0 z-50 overflow-y-auto'>
       <div className='flex min-h-screen items-center justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0'>
         <div className='fixed inset-0 transition-opacity'>
           <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
@@ -52,6 +53,7 @@ const SuccessModal = ({ message, href }: Props) => {
             <Link
               href={href}
               className='inline-flex w-full justify-center rounded-md border border-transparent bg-primary-100 px-4 py-2 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:ring-offset-2  sm:ml-3 sm:w-auto'
+              onClick={onClose}
             >
               <Typography colorVariant='secondary' className='font-medium'>
                 OK
