@@ -65,7 +65,7 @@ export default function HomePage() {
       <Seo />
       <main>
         <div className='absolute top-0 w-full bg-primary-100 p-9' />
-        <div className='mx-auto w-3/5 rounded-2xl bg-primary-500 py-3 px-40 pb-2 shadow-xl'>
+        <div className='mx-auto w-3/5 rounded-2xl bg-primary-500 px-40 py-3 pb-2 shadow-xl'>
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className='font-primary'>
               <Steps activeStep={activeStep}>
@@ -79,14 +79,14 @@ export default function HomePage() {
                     </Typography>
                     <div>
                       <div className='flex flex-col gap-y-4 pt-12'>
-                        <div className='flex justify-between'>
+                        <div className='flex justify-between gap-x-7'>
                           <Input
                             id='nama_depan_pembuat'
                             placeholder='Nama Depan'
                             validation={{
                               required: '* Nama Depan harus diisi',
                             }}
-                            className='px-10'
+                            className='px-16'
                           />
                           <Input
                             id='nama_belakang_pembuat'
@@ -94,7 +94,7 @@ export default function HomePage() {
                             validation={{
                               required: '* Nama Belakang harus diisi',
                             }}
-                            className='px-10'
+                            className='px-16'
                           />
                         </div>
                         <Input
@@ -135,10 +135,6 @@ export default function HomePage() {
                           placeholder='Tempat Instansi'
                           validation={{
                             required: '* Masukkan Nama Instansi',
-                            pattern: {
-                              value: /^[A-Za-z]+$/i,
-                              message: '* Format Instansi salah',
-                            },
                           }}
                         />
                       </div>
@@ -153,14 +149,14 @@ export default function HomePage() {
                     </Typography>
                     <div>
                       <div className='flex flex-col gap-y-4 py-12'>
-                        <div className='flex justify-between'>
+                        <div className='flex justify-between gap-x-7'>
                           <Input
                             id='nama_depan_penerima'
                             placeholder='Nama Depan'
                             validation={{
                               required: '* Nama Depan harus diisi',
                             }}
-                            className='px-10'
+                            className='px-16'
                           />
                           <Input
                             id='nama_belakang_penerima'
@@ -168,7 +164,7 @@ export default function HomePage() {
                             validation={{
                               required: '* Nama Belakang harus diisi',
                             }}
-                            className='px-10'
+                            className='px-16'
                           />
                         </div>
                         <TextArea
