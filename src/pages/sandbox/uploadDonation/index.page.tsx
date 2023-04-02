@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import DateInput from '@/components/forms/DateInput';
@@ -13,7 +13,18 @@ import StepperController from '@/components/multistep/StepperController';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
-export default function HomePage() {
+export default function UploadPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      window.location.href = '/login'; // Redirect to login page
+    }
+  }, []);
+
   const methods = useForm({
     mode: 'onTouched',
   });
@@ -59,6 +70,10 @@ export default function HomePage() {
       nextStep();
     }
   };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <Layout withFooter={false}>

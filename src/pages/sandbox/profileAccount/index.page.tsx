@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
@@ -7,13 +7,28 @@ import Cta from '@/sections/Cta';
 import History from '@/sections/History';
 import User from '@/sections/User';
 
-export default function HomePage() {
+export default function ProfilePage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      window.location.href = '/login';
+    }
+  }, []);
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <Layout>
       <Seo />
       <main className='relative'>
         <User />
-        <div className='absolute top-1/2 left-0 z-10 mt-[5vh] flex h-full w-full items-center justify-center'>
+        <div className='absolute left-0 top-1/2 z-10 mt-[5vh] flex h-full w-full items-center justify-center'>
           <Cta />
         </div>
       </main>
