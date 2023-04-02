@@ -1,4 +1,3 @@
-import { floor } from 'lodash';
 import React, { useEffect, useState } from 'react';
 
 import ButtonLink from '@/components/buttons/ButtonLink';
@@ -11,8 +10,9 @@ import { listDonatur } from '@/constant/listDonatur';
 import UpperPart from '@/components/upperDetailDonation/upperPart';
 import { DataType, getEventData } from '@/pages/api/event';
 import { useRouter } from 'next/router';
+import { floor } from 'lodash';
 
-function detailDonation() {
+function DetailDonation() {
   const router = useRouter();
   const { id } = router.query;
   const [donation, setDonation] = useState<DataType>();
@@ -108,4 +108,4 @@ function detailDonation() {
   );
 }
 
-export default detailDonation;
+export default DetailDonation;
