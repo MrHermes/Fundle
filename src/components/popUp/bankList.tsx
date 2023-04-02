@@ -7,12 +7,12 @@ import { IoCaretBackCircleOutline } from 'react-icons/io5';
 import Typography from '@/components/Typography';
 
 const BankList = [
-  { value: 'OVO', icon: '/images/ovo.svg' },
-  { value: 'GO-PAY', icon: '/images/gopay.svg' },
-  { value: 'Mandiri', icon: '/images/mandiri.svg' },
-  { value: 'BRI', icon: '/images/bri.svg' },
-  { value: 'BSI', icon: '/images/bsi.svg' },
-  { value: 'BCA', icon: '/images/bca.svg' },
+  { id: 1, value: 'BRI', icon: '/images/bri.svg' },
+  { id: 2, value: 'BCA', icon: '/images/bca.svg' },
+  { id: 3, value: 'Mandiri', icon: '/images/mandiri.svg' },
+  { id: 4, value: 'BSI', icon: '/images/bsi.svg' },
+  { id: 5, value: 'OVO', icon: '/images/ovo.svg' },
+  { id: 6, value: 'GO-PAY', icon: '/images/gopay.svg' },
 ];
 
 interface PopUpBankProp {
@@ -21,15 +21,14 @@ interface PopUpBankProp {
 }
 
 function PopUpBank({ isOpen, onClose }: PopUpBankProp) {
-  const [selected, setSelected] = useState('null');
+  const [selected, setSelected] = useState(0);
   const {
     register,
     formState: { errors },
-    handleSubmit,
   } = useFormContext();
 
   const handleRadio = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelected(event.target.value);
+    setSelected(parseInt(event.target.value, 10));
   };
 
   if (!isOpen) return null;
@@ -55,41 +54,41 @@ function PopUpBank({ isOpen, onClose }: PopUpBankProp) {
             Pilih Metode Pembayaran
           </Typography>
         </div>
-        {BankList.map(({ value, icon }) => (
+        {BankList.map(( BankList, index ) => (
           <div
-            key={value}
+            key={index}
             style={
-              selected === value
+              selected == BankList.id
                 ? { outline: '2px solid' }
                 : { outline: '2px solid transparent' }
             }
             className='m-3 flex min-w-[20rem] flex-row rounded-xl bg-primary-200 px-3 py-2 shadow-xl hover:shadow-2xl'
           >
-            <div className='min-w-40 px-auto'>
-              <Image
-                src={icon}
-                alt={value}
-                width={70}
-                height={40}
-                className='h-10 w-20'
-              />
-            </div>
             <input
-              {...register('nama_bank')}
+              {...register('bank')}
               type='radio'
-              id={value}
-              name='nama_bank'
-              value={value}
-              checked={selected == value}
+              id={BankList.value}
+              name='bank'
+              value={BankList.id}
+              checked={selected === BankList.id}
               onChange={handleRadio}
               className='-x absolute -top-1/2 cursor-pointer'
             />
             <label
-              htmlFor={value}
-              className='my-auto ml-3 h-full w-full cursor-pointer'
+              htmlFor={BankList.value}
+              className='h-full w-full cursor-pointer flex flex-row'
             >
-              <Typography sizeVariant='c3' colorVariant='primary'>
-                {value}
+              <div className='min-w-40 px-auto'>
+                <Image
+                  src={BankList.icon}
+                  alt={BankList.value}
+                  width={70}
+                  height={40}
+                  className='h-10 w-20'
+                />
+              </div>
+              <Typography sizeVariant='c3' colorVariant='primary' className='my-auto ml-3'>
+                {BankList.value}
               </Typography>
             </label>
           </div>

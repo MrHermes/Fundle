@@ -106,7 +106,7 @@ function DetailDonation() {
         </div>
 
         <ButtonLink
-          href='/'
+          href={`/payment/${donation?.id}`}
           className='mx-auto mt-10 w-max px-5 py-4 text-2xl font-extrabold hover:bg-secondary-100/60'
         >
           Donasi Sekarang
