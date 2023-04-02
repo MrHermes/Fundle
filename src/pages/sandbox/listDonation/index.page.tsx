@@ -7,9 +7,35 @@ import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
-import { listPhotos } from '@/constant/listPhotos';
+import Link from 'next/link';
+import { DataType, DonationListType, get3Event } from '@/pages/api/event';
+import { useEffect, useState } from 'react';
 
 export default function HomePage() {
+
+  const [donationList, setDonationList] = useState<DonationListType[]>([]);
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try{
+        const data = await get3Event();
+        console.log("++");
+        console.log(typeof data.data);
+        console.log(data.data);
+        setDonationList(data.data);
+      }catch(error){
+        console.log("ERROR -> ListDonation")
+        console.log(error)
+      }finally{
+      }
+      
+    };
+    fetchEventData();
+  }, [])
+
+  console.log("--");
+  console.log(donationList);
+  
   return (
     <Layout>
       <Seo />
@@ -40,15 +66,16 @@ export default function HomePage() {
         <div className='layout'>
           <SearchBar placeholder='Ketik Sesuatu' />
           <div className='pt-16'>
-            {listPhotos.map((photo, index) => (
-              <ListDonationCard
-                index={index}
-                id={photo.id}
-                key={photo.id}
-                title={photo.title}
-                imgUrl={photo.imgUrl}
-                desc={photo.desc}
-              />
+            {donationList && donationList.map(( donationList, index ) => (
+              <Link key={index} href={`/sandbox/listDonation/${donationList.id}`}>
+                <ListDonationCard
+                  index={index+1}
+                  id={donationList.id}
+                  title={donationList.judul_event}
+                  imgUrl={donationList.foto_event && donationList.foto_event != "https://example.com/foto.jpg" ? donationList.foto_event : "/images/dummy-poster.svg"}
+                  desc={donationList.deskripsi_event}
+                />
+              </Link>
             ))}
           </div>
         </div>
