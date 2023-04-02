@@ -41,13 +41,15 @@ function Header() {
         transition={{ duration: 1, delay: 0.1, ease: 'easeInOut' }}
       >
         <div className='layout flex flex-row flex-wrap justify-between py-6'>
-          <Image
-            src='/images/fundle.svg'
-            alt='Fundle'
-            width={100}
-            height={60}
-            className='h-6 w-24'
-          />
+          <Link href='/sandbox/landing'>
+            <Image
+              src='/images/fundle.svg'
+              alt='Fundle'
+              width={100}
+              height={60}
+              className='h-6 w-24'
+            />
+          </Link>
           <ul className='flex flex-row gap-x-4'>
             {NavbarLink.map(({ link, title }) => (
               <li key={`${link}${title}`}>
