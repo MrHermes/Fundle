@@ -28,17 +28,21 @@ function Login() {
   const onSubmit = async (data: any) => {
     try {
       const response = await axios.post(`${API_BaseUrl}api/user/login`, {
-        // const response = await axios.post('http://localhost:8888/api/user/login',{
         email: data.Email,
         password: data.Password,
       });
       const responseData = response.data;
-      // console.log(responseData)
-      // console.log(response)
-      // console.log(errors)
       if (response.status === 200) {
         localStorage.setItem('token', responseData.data.token);
         toast.success('Berhasil Login');
+
+        // const meResponse = await axios.get(`${API_BaseUrl}api/user/me`, {
+        //   headers: {
+        //     Authorization: `Bearer ${localStorage.getItem('token')}`,
+        //   },
+        // });
+        // const meData = meResponse.data;
+        // console.log(meData.data.id); // assuming you want to log the meData
         window.location.href = '/';
       } else {
         throw new Error(responseData.message);

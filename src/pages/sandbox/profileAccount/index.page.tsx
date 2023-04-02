@@ -28,7 +28,7 @@ export default function ProfilePage() {
       <Seo />
       <main className='relative'>
         <User />
-        <div className='absolute left-0 top-1/2 z-10 mt-[5vh] flex h-full w-full items-center justify-center'>
+        <div className='absolute left-0 top-1/2 z-10 -mt-12 flex h-full w-full items-center justify-center'>
           <Cta />
         </div>
       </main>

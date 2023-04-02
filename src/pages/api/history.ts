@@ -5,7 +5,7 @@ import { API_BaseUrl } from '@/constant/env';
 export type HistoryType = {
   id: string;
   deskripsi_event: string;
-  foto_event: boolean;
+  foto_event: string;
   judul_event: string;
   status: boolean;
   message: string;

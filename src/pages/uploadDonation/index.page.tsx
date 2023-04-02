@@ -51,6 +51,7 @@ export default function UploadPage() {
       const payload = token ? JSON.parse(atob(token?.split('.')[1])) : null;
       const user_id = payload.user_id;
       data.user_id = user_id;
+      console.log(user_id);
       const response = await axios.post(
         `${API_BaseUrl}api/event`,
         {
@@ -284,6 +285,10 @@ export default function UploadPage() {
                           placeholder='Judul Postingan'
                           validation={{
                             required: '* Judul Postingan harus diisi',
+                            maxLength: {
+                              value: 50,
+                              message: '* Tidak boleh lebih dari 50 karakter',
+                            },
                           }}
                         />
                         <Input
