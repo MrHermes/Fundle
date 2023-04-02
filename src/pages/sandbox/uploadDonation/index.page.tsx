@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from 'axios';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -18,10 +19,11 @@ export default function UploadPage() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log(token);
     if (token) {
       setIsAuthenticated(true);
     } else {
-      window.location.href = '/login'; // Redirect to login page
+      window.location.href = '/login';
     }
   }, []);
 
@@ -35,13 +37,49 @@ export default function UploadPage() {
   const { handleSubmit, trigger } = methods;
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const onSubmit = (data: any) => {
-    {
+  console.log(errors);
+
+  const onSubmit = async (data: any) => {
+    try {
       setShowSuccessModal(!showSuccessModal);
+      console.log('Submitted data:', data);
+      const token = localStorage.getItem('token');
+      const payload = token ? JSON.parse(atob(token?.split('.')[1])) : null;
+      const user_id = payload.user_id;
+      data.user_id = user_id;
+      const response = await axios.post(
+        'https://fundlebackendapi-production.up.railway.app/api/event',
+        {
+          rekening_event: data.rekening_event,
+          judul_event: data.judul_event,
+          deskripsi_event: data.deskripsi_event,
+          jenis_event: data.jenis_event,
+          foto_event: data.foto_event,
+          expired_donasi: data.expired_donasi,
+          max_donasi: parseFloat(data.max_donasi),
+          nama_depan_pembuat: data.nama_depan_pembuat,
+          nama_belakang_pembuat: data.nama_belakang_pembuat,
+          nomor_ktp: data.nomor_ktp,
+          nomor_telepon_pembuat: data.nomor_telepon_pembuat,
+          pekerjaan: data.pekerjaan,
+          asal_instansi: data.asal_instansi,
+          nama_depan_penerima: data.nama_depan_penerima,
+          nama_belakang_penerima: data.nama_belakang_penerima,
+          tujuan_galang_dana: data.tujuan_galang_dana,
+          lokasi_tujuan: data.lokasi_tujuan,
+          user_id: data.user_id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
-    console.log(errors);
-    console.log({ data });
-    return;
   };
 
   const { activeStep, nextStep, prevStep } = useSteps({
@@ -229,7 +267,7 @@ export default function UploadPage() {
                           isSearchable={false}
                           options={[
                             {
-                              value: 'KegiatanSosial',
+                              value: 'Kegiatan Sosial',
                               label: 'Kegiatan Sosial',
                             },
                             { value: 'Kesehatan', label: 'Kesehatan' },
