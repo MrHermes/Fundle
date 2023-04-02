@@ -51,7 +51,7 @@ const sandboxPages = [
   },
   {
     title: 'Upload Donation',
-    url: '/sandbox/uploadDonation',
+    url: '/uploadDonation',
   },
 ];
 
@@ -81,7 +81,7 @@ export default function HomePage() {
                 <ButtonLink
                   key={url}
                   href={url}
-                  className='py-2 px-5 font-light hover:bg-secondary-100/60'
+                  className='px-5 py-2 font-light hover:bg-secondary-100/60'
                 >
                   {title}
                 </ButtonLink>
@@ -99,7 +99,7 @@ export default function HomePage() {
                 <ButtonLink
                   key={url}
                   href={url}
-                  className='py-2 px-5 font-light hover:bg-secondary-100/60'
+                  className='px-5 py-2 font-light hover:bg-secondary-100/60'
                 >
                   {title}
                 </ButtonLink>

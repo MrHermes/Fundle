@@ -10,7 +10,7 @@ const NavbarLink = [
   { link: '/#About', title: 'Tentang' },
   { link: '/#Service', title: 'Layanan' },
   { link: '/DonationList', title: 'Donasi' },
-  { link: '/Profile', title: 'Profil' },
+  { link: '/sandbox/profileAccount', title: 'Profil' },
 ];
 
 function Header() {

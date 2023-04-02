@@ -6,12 +6,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 import Input from '@/components/forms/Input';
 import InputPassword from '@/components/forms/InputPassword';
 import Layout from '@/components/layout/Layout';
+import FailedModal from '@/components/modal/failedModal';
+import SuccessModal from '@/components/modal/successModal';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
 import { API_BaseUrl } from '@/constant/env';
-import FailedModal from '@/pages/register/failedModal';
-import SuccessModal from '@/pages/register/successModal';
 
 interface ApiResponse {
   message: string;
@@ -100,7 +100,7 @@ function Register() {
                 Sebarkan Kebaikan dan Kebahagiaan
               </Typography>
             </div>
-            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 pt-32 pb-44'>
+            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 pb-44 pt-32'>
               <Typography
                 sizeVariant='h2'
                 colorVariant='tertiary'
@@ -185,10 +185,14 @@ function Register() {
                     </Typography>
                   </button>
                   {showSuccessModal && (
-                    <SuccessModal message='Silakan lakukan Sign In kembali' />
+                    <SuccessModal
+                      href='/login'
+                      message='Silakan lakukan Sign In kembali'
+                    />
                   )}
                   {showFailedModal && (
                     <FailedModal
+                      href='/register'
                       onClick={() => setShowFailedModal(false)}
                       message={responseData?.message}
                     />

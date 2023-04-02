@@ -10,14 +10,14 @@ export default function App({ Component, pageProps }: AppProps) {
     components: {
       Steps,
     },
-  })
+  });
 
   return (
-    <>
+    <div className='font-primary'>
       <ChakraProvider theme={theme}>
         <Toaster />
         <Component {...pageProps} />;
       </ChakraProvider>
-    </>
+    </div>
   );
 }

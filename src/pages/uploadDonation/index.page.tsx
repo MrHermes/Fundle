@@ -4,16 +4,19 @@ import axios from 'axios';
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import DateInput from '@/components/forms/DateInput';
 import Input from '@/components/forms/Input';
 import SelectInput from '@/components/forms/SelectInput';
 import TextArea from '@/components/forms/TextArea';
 import Layout from '@/components/layout/Layout';
+import SuccessModal from '@/components/modal/successModal';
 import StepperController from '@/components/multistep/StepperController';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
+import { API_BaseUrl } from '@/constant/env';
 export default function UploadPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -22,7 +25,8 @@ export default function UploadPage() {
     console.log(token);
     if (token) {
       setIsAuthenticated(true);
-    } else {
+    } else if (!token) {
+      toast.error('Akun Belum Terdaftar');
       window.location.href = '/login';
     }
   }, []);
@@ -48,7 +52,7 @@ export default function UploadPage() {
       const user_id = payload.user_id;
       data.user_id = user_id;
       const response = await axios.post(
-        'https://fundlebackendapi-production.up.railway.app/api/event',
+        `${API_BaseUrl}api/event`,
         {
           rekening_event: data.rekening_event,
           judul_event: data.judul_event,
@@ -329,6 +333,12 @@ export default function UploadPage() {
                   <StepperController onClick={handleNext} steps='Selanjutnya' />
                 )}
               </div>
+              {showSuccessModal && (
+                <SuccessModal
+                  href='/sandbox/profileAccount'
+                  message='Berhasil Menambahkan Event'
+                />
+              )}
             </form>
           </FormProvider>
         </div>
