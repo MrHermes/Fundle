@@ -94,18 +94,16 @@ export const getEventData = async ( id?: string ) => {
     //console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log("ERROR HERE");
-    console.log(error);
+    throw new Error ("Error in API fetch");
   }
 };
 
 export const get3Event = async ( ) => {
   try {
     const response = await axios.get(`${API_BaseUrl}api/event/get3event`);
-    console.log(response.data);
+    //console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log("ERROR HERE");
-    console.log(error);
+    throw new Error ("Error in API fetch");
   }
 };

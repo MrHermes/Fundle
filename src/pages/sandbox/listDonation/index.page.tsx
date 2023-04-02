@@ -19,22 +19,22 @@ export default function HomePage() {
     const fetchEventData = async () => {
       try{
         const data = await get3Event();
-        console.log("++");
-        console.log(typeof data.data);
-        console.log(data.data);
+        // console.log("++");
+        // console.log(typeof data.data);
+        // console.log(data.data);
         setDonationList(data.data);
       }catch(error){
-        console.log("ERROR -> ListDonation")
-        console.log(error)
-      }finally{
+        // console.log("ERROR -> ListDonation")
+        // console.log(error)
+        throw new Error ("Error in ListDonation")
       }
       
     };
     fetchEventData();
   }, [])
 
-  console.log("--");
-  console.log(donationList);
+  // console.log("--");
+  // console.log(donationList);
   
   return (
     <Layout>
