@@ -29,7 +29,7 @@ function UpperPart({
         alt='Poster Image'
         width={640}
         height={450}
-        className='static max-h-[100vh] w-full'
+        className='static max-h-[100vh] w-full object-cover'
       />
       {/* Nama_Event */}
       <Typography

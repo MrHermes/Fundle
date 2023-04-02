@@ -1,3 +1,5 @@
+import { floor } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import ButtonLink from '@/components/buttons/ButtonLink';
@@ -5,12 +7,10 @@ import Layout from '@/components/layout/Layout';
 import ProgressBar from '@/components/progressbars/progressBar';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
+import UpperPart from '@/components/upperDetailDonation/upperPart';
 
 import { listDonatur } from '@/constant/listDonatur';
-import UpperPart from '@/components/upperDetailDonation/upperPart';
 import { DataType, getEventData } from '@/pages/api/event';
-import { useRouter } from 'next/router';
-import { floor } from 'lodash';
 
 function DetailDonation() {
   const router = useRouter();
@@ -19,32 +19,40 @@ function DetailDonation() {
 
   useEffect(() => {
     const fetchEventData = async () => {
-      if (typeof id === "string"){
-        const data = await getEventData((id));
+      if (typeof id === 'string') {
+        const data = await getEventData(id);
         //console.log(data.data);
         setDonation(data.data);
-      } 
+      }
     };
     fetchEventData();
-  }, [id])
+  }, [id]);
 
-  let data = 0
-  if (typeof donation?.jumlah_donasi === "number" && typeof donation?.max_donasi === "number"){  
-    data = floor(( donation?.jumlah_donasi/donation?.max_donasi) * 100);
+  let data = 0;
+  if (
+    typeof donation?.jumlah_donasi === 'number' &&
+    typeof donation?.max_donasi === 'number'
+  ) {
+    data = floor((donation?.jumlah_donasi / donation?.max_donasi) * 100);
   }
 
   return (
     <Layout>
       <Seo />
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
-      <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pt-20 pb-10'>
-        <UpperPart 
-          namaEvent={donation?.judul_event ? donation.judul_event : ""}
-          fotoEvent={donation?.foto_event && donation.foto_event != "https://example.com/foto.jpg" ? donation?.foto_event : "/images/dummy-poster.svg"}
-          jumlahDonasi={donation?.jumlah_donasi ? donation.jumlah_donasi : 0} 
-          targetDonasi={donation?.max_donasi ? donation.max_donasi : 0} 
-          sisaHari={donation?.time_left ? donation.time_left : "0"} 
-          jumlahDonatur={donation?.is_done ? donation.is_done : 0} 
+      <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pb-10 pt-20'>
+        <UpperPart
+          namaEvent={donation?.judul_event ? donation.judul_event : ''}
+          fotoEvent={
+            donation?.foto_event &&
+            donation.foto_event != 'https://example.com/foto.jpg'
+              ? donation?.foto_event
+              : '/images/dummy-poster.svg'
+          }
+          jumlahDonasi={donation?.jumlah_donasi ? donation.jumlah_donasi : 0}
+          targetDonasi={donation?.max_donasi ? donation.max_donasi : 0}
+          sisaHari={donation?.time_left ? donation.time_left : '0'}
+          jumlahDonatur={donation?.is_done ? donation.is_done : 0}
         />
 
         {/* Bar progress uang */}
@@ -99,7 +107,7 @@ function DetailDonation() {
 
         <ButtonLink
           href='/'
-          className='mx-auto mt-10 w-max py-4 px-5 text-2xl font-extrabold hover:bg-secondary-100/60'
+          className='mx-auto mt-10 w-max px-5 py-4 text-2xl font-extrabold hover:bg-secondary-100/60'
         >
           Donasi Sekarang
         </ButtonLink>

@@ -43,7 +43,7 @@ function Payment() {
           fotoEvent='/images/dummy-poster.svg'
           jumlahDonasi={1000000000}
           targetDonasi={1000000000000}
-          sisaHari={12}
+          sisaHari='12'
           jumlahDonatur={4517}
         />
 
