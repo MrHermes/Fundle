@@ -1,11 +1,27 @@
 import React from 'react';
 
-import HistoryCard from '@/components/historyList/HistoryCard';
+// import { useEffect, useState } from 'react';
+// import HistoryCard from '@/components/historyList/HistoryCard';
 import Typography from '@/components/Typography';
 
-import { listHistory } from '@/constant/listHistory';
+// import { getevent,HistoryType } from '@/pages/api/history';
 
 function History() {
+  // const [historyList, setHistoryList] = useState<HistoryType[]>([]);
+
+  // useEffect(() => {
+  //   const fetchEventData = async () => {
+  //     try{
+  //       const data = await getevent();
+  //       setHistoryList(data.data);
+  //     }catch(error){
+  //       throw new Error ("Error")
+  //     }
+
+  //   };
+  //   fetchEventData();
+  // }, [])
+
   return (
     <section className='mt-[30vh]'>
       <div className='layout'>
@@ -23,7 +39,7 @@ function History() {
 
           {/* LIST */}
           <div className='group flex'>
-            {listHistory.map((photo) => (
+            {/* {listHistory.map((photo) => (
               // eslint-disable-next-line react/jsx-key
               <HistoryCard
                 id={photo.id}
@@ -32,7 +48,15 @@ function History() {
                 desc={photo.desc}
                 icon={photo.icon}
               />
-            ))}
+            ))} */}
+            {/* {historyList && historyList.map(( historyList ) => (
+              <HistoryCard
+                id={historyList.id}
+                title={historyList.judul_event}
+                imgUrl={historyList.foto_event && historyList.foto_event != "https://example.com/foto.jpg"}
+                desc={historyList.deskripsi_event}
+              />
+            ) )} */}
           </div>
         </div>
       </div>
