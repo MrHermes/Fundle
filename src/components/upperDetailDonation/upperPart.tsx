@@ -10,7 +10,7 @@ interface upperPartProp {
   fotoEvent: string;
   jumlahDonasi: number;
   targetDonasi: number;
-  sisaHari: number;
+  sisaHari: string;
   jumlahDonatur: number;
 }
 
@@ -29,7 +29,7 @@ function UpperPart({
         alt='Poster Image'
         width={640}
         height={450}
-        className='static w-full'
+        className='static w-full max-h-[50vh]'
       />
       {/* Nama_Event */}
       <Typography

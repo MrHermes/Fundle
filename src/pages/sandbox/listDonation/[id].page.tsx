@@ -39,12 +39,12 @@ function DetailDonation() {
       <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
       <main className='layout mt-14 rounded-2xl bg-primary-200 px-20 pt-20 pb-10'>
         <UpperPart 
-          namaEvent={donation?.judul_event ? donation?.judul_event : ""}
-          fotoEvent={donation?.foto_event && donation.foto_event != "https://example.com/foto.jpg" ? donation?.judul_event : "/images/dummy-poster.svg"}
-          jumlahDonasi={donation?.jumlah_donasi ? donation?.jumlah_donasi : 0} 
-          targetDonasi={donation?.max_donasi ? donation?.jumlah_donasi : 0} 
-          sisaHari={12} 
-          jumlahDonatur={4517} 
+          namaEvent={donation?.judul_event ? donation.judul_event : ""}
+          fotoEvent={donation?.foto_event && donation.foto_event != "https://example.com/foto.jpg" ? donation?.foto_event : "/images/dummy-poster.svg"}
+          jumlahDonasi={donation?.jumlah_donasi ? donation.jumlah_donasi : 0} 
+          targetDonasi={donation?.max_donasi ? donation.max_donasi : 0} 
+          sisaHari={donation?.time_left ? donation.time_left : "0"} 
+          jumlahDonatur={donation?.is_done ? donation.is_done : 0} 
         />
 
         {/* Bar progress uang */}

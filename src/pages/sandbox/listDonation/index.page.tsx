@@ -40,28 +40,30 @@ export default function HomePage() {
     <Layout>
       <Seo />
       <main>
-        <Image
-          src='/svg/ListDonation-Poster.svg'
-          alt='List Donation Poster'
-          width={500}
-          height={500}
-          className='-mt-20 w-full'
-        />
-        <div className='flex justify-center'>
-          <Typography
-            sizeVariant='h1'
-            colorVariant='secondary'
-            className='absolute top-1/3 mr-24 font-bold'
-          >
-            Daftar
-          </Typography>
-          <Typography
-            sizeVariant='h1'
-            colorVariant='secondary'
-            className='absolute top-1/3 mt-16 ml-24'
-          >
-            Donasi
-          </Typography>
+        <div className='relative'>
+          <Image
+            src='/svg/ListDonation-Poster.svg'
+            alt='List Donation Poster'
+            width={500}
+            height={500}
+            className='-mt-20 w-full'
+          />
+          <div className='flex justify-center'>
+            <Typography
+              sizeVariant='h1'
+              colorVariant='secondary'
+              className='absolute top-1/3 mr-24 font-bold'
+            >
+              Daftar
+            </Typography>
+            <Typography
+              sizeVariant='h1'
+              colorVariant='secondary'
+              className='absolute top-1/3 mt-16 ml-24'
+            >
+              Donasi
+            </Typography>
+          </div>
         </div>
         <div className='layout'>
           <SearchBar placeholder='Ketik Sesuatu' />

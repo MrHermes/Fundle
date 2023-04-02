@@ -8,11 +8,9 @@ const nextConfig = {
   pageExtensions: ['page.tsx', 'api.ts'],
   swcMinify: true,
 
-  // images: {
-  //   domains: [
-  //     'res.cloudinary.com',
-  //   ],
-  // },
+  images: {
+    domains: ['i.pinimg.com'],
+  },
 
   // SVGR
   webpack(config) {
