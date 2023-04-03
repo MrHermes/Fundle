@@ -2,34 +2,29 @@ import React, { HTMLInputTypeAttribute, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
 import Typography from '@/components/Typography';
+import { debounce } from 'lodash';
 
 interface SearchBarProps {
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
   className?: string;
+  onChange: (query: string) => void
 }
 
-function SearchBar({ placeholder, type = 'text', className }: SearchBarProps) {
-  const [searchValue, setSearchValue] = useState('');
+function SearchBar({ placeholder, type = 'text', className , onChange}: SearchBarProps) {
+  const [query, setQuery] = useState('')
 
-  const handleInputChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setSearchValue(event.target.value);
-  };
+  const handleSearch = ((data:string) => onChange(data))
 
-  const handleEnterSearch = (event: { key: string }) => {
-    if (event.key === 'Enter') {
-      setSearchValue('');
-    }
-  };
-  const handleButtonSearch = () => {
-    setSearchValue('');
-  };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value)
 
-  // const [showSearch, setShowSearch] = useState(true);
+    const delayedSearch = debounce(() => {
+      handleSearch(event.target.value)
+    }, 300)
 
-  // const handleClick = () => setShowSearch(!showSearch);
+    delayedSearch()
+  }
 
   return (
     <div className='layout flex w-full justify-center'>
@@ -37,15 +32,15 @@ function SearchBar({ placeholder, type = 'text', className }: SearchBarProps) {
         <input
           // onClick={handleClick}
           type={type}
-          value={searchValue}
+          value={query}
           placeholder={placeholder}
           onChange={handleInputChange}
-          onKeyDown={handleEnterSearch}
+          // onKeyDown={handleEnterSearch}
           className={`${className} layout absolute -mt-7 w-11/12 rounded-3xl
         border-none bg-primary-500 p-3 px-5 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]`}
         />
       </div>
-      <button onClick={handleButtonSearch}>
+      <button onClick={() => onChange(query)}>
         <Typography
           sizeVariant='c1'
           colorVariant='tertiary'
