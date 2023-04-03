@@ -35,6 +35,7 @@ function History() {
         const response = await axios.get(url, config);
 
         setHistoryList(response.data.data);
+        console.log(response.data.data);
         // console.log(response.data);
         // console.log(response.data.data.length);
         setIsAuthenticated(true);
@@ -55,13 +56,13 @@ function History() {
   }
 
   return (
-    <section className='mt-[30vh]'>
+    <section className='mt-[10vh]'>
       <div className='layout'>
-        <div className='flex flex-col items-center  text-center'>
+        <div className='flex flex-col items-center text-center'>
           {/* TITLE */}
           <div className='pb-14'>
             <Typography
-              sizeVariant='h4'
+              sizeVariant='h6'
               colorVariant='tertiary'
               className='pb-4 font-bold'
             >
@@ -74,6 +75,7 @@ function History() {
               historyList.map((historyList: HistoryType) => (
                 <HistoryCard
                   key={historyList.id}
+                  href={`/withdraw/${historyList.id}`}
                   id={historyList.id}
                   title={historyList.judul_event}
                   imgUrl={historyList.foto_event}
@@ -82,7 +84,7 @@ function History() {
               ))
             ) : (
               <Typography sizeVariant='c1' colorVariant='primary'>
-                No history available
+                Belum Ada Galang Dana yang Dibuat
               </Typography>
             )}
           </div>

@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { AiOutlineRightCircle } from 'react-icons/ai'
 
 import Typography from '@/components/Typography';
 
@@ -7,9 +9,10 @@ interface HistoryProps {
   imgUrl: string;
   title: string;
   desc: string;
+  href: string;
 }
 
-function HistoryProps({ id, imgUrl, title, desc }: HistoryProps) {
+function HistoryProps({ id, imgUrl, title, desc, href }: HistoryProps) {
   return (
     <div className='max-w-[26rem]'>
       <div className='mr-[4vh] drop-shadow-lg'>
@@ -29,16 +32,11 @@ function HistoryProps({ id, imgUrl, title, desc }: HistoryProps) {
           <Typography sizeVariant='c3' className='line-clamp-2'>
             {desc}
           </Typography>
-          <div className='flex justify-center'>
-            <Image
-              src='/images/icon_right.png'
-              alt='icon-right'
-              width={34}
-              height={34}
-              id={id}
-              className='absolute bottom-7 pt-[1.5rem]'
-            />
-          </div>
+          <Link href={href} className='flex justify-center p-4 mr-6'>
+            <Typography sizeVariant='h4' colorVariant='tertiary' className='text-center'>
+              <AiOutlineRightCircle className='absolute bottom-7 hover:bounce'/>
+            </Typography>
+          </Link>
         </div>
       </div>
     </div>

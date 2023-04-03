@@ -7,7 +7,7 @@ import Typography from '@/components/Typography';
 const Cta = () => {
   return (
     <section
-      className='container mx-auto mt-10 mb-[150px] w-11/12 rounded-[58px]'
+      className='container mx-auto w-11/12 rounded-[58px]'
       style={{
         backgroundImage: 'linear-gradient(135deg, #5DFCA4 0%, #A1DAED 100%)',
       }}
@@ -33,7 +33,7 @@ const Cta = () => {
           </Typography>
           <div className='flex'>
             <ButtonLink
-              href='/'
+              href='/uploadDonation'
               className='py-[15px] px-[30px] text-center font-semibold hover:bg-secondary-200'
             >
               BUAT SEKARANG
@@ -41,12 +41,13 @@ const Cta = () => {
           </div>
         </div>
 
-        <div className='flex flex-1 justify-end'>
+        <div className='flex flex-1 justify-end '>
           <Image
             src='/images/cta_img.svg'
             alt='poster'
             width={400}
             height={250}
+            className='w-[25rem] object-cover'
           />
         </div>
       </div>

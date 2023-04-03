@@ -43,7 +43,7 @@ const sandboxPages = [
   },
   {
     title: 'Profile Account',
-    url: '/sandbox/profileAccount',
+    url: '/profileAccount',
   },
   {
     title: 'Payment',

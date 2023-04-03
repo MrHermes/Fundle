@@ -308,9 +308,13 @@ export default function UploadPage() {
                         />
                         <Input
                           id='foto_event'
-                          placeholder='Foto Event'
+                          placeholder='URL Foto Event'
                           validation={{
                             required: '* Foto harus diisi',
+                            pattern: {
+                              value: /^(https?:\/\/)?[a-zA-Z0-9]+\.[a-zA-Z0-9]+[^\s]*$/,
+                              message: '* Format URL harus sesuai (https://www.example.com)',
+                            },
                           }}
                         />
                         <DateInput
@@ -340,7 +344,7 @@ export default function UploadPage() {
               </div>
               {showSuccessModal && (
                 <SuccessModal
-                  href='/sandbox/profileAccount'
+                  href='/profileAccount'
                   message='Berhasil Menambahkan Event'
                 />
               )}
