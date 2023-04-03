@@ -16,16 +16,11 @@ import { API_BaseUrl } from '@/constant/env';
 import SuccessModal from '@/components/modal/successModal';
 import FailedModal from '@/components/modal/failedModal';
 
-interface PaymentResponse {
-  message: string;
-}
-
 function Payment() {
   const router = useRouter();
   const { id } = router.query;
   const [isOpen, setOpen] = useState(false);
   const [donation, setDonation] = useState<DataType>();
-  const [responseData, setResponseData] = useState<any>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showFailedModal, setShowFailedModal] = useState(false);
 
@@ -62,8 +57,6 @@ function Payment() {
   }
 
   const onSubmit = async (data: any) => {
-    const nominal = parseInt(data.nominal);
-    const bank = parseInt(data.bank);
     try {
       const response = await fetch(`${API_BaseUrl}api/user/transaksi/${id}`, {
         method: 'POST',
@@ -72,13 +65,10 @@ function Payment() {
           Authorization: `Bearer ${window.localStorage.getItem("token")}`
         },
         body: JSON.stringify({
-          jumlah : nominal,
-          list_bank_id : bank
+          jumlah : parseInt(data.nominal),
+          list_bank_id : parseInt(data.bank)
         }),
       });
-      const responseData = (await response.json()) as PaymentResponse;
-      console.log(responseData);
-      setResponseData(responseData);
       if (response.ok) {
         setShowSuccessModal(true);
       } else {
@@ -129,14 +119,22 @@ function Payment() {
           </FormProvider>
 
           <div className='flex justify-center'>
-            <button
-              className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3'
-              onClick={openModal}
-            >
-              <Typography sizeVariant='c3' colorVariant='secondary'>
-                Lanjutkan Pembayaran
-              </Typography>
-            </button>
+            {donation?.is_target_full || donation?.is_expired ? 
+              <div className='w-25 mt-5 rounded-xl bg-secondary-500 px-5 py-3 border-solid border-2'>
+                <Typography sizeVariant='c3' colorVariant='primary'>
+                  Donasi Ditutup
+                </Typography>
+              </div> 
+              :
+              <button
+                className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3'
+                onClick={openModal}
+              >
+                <Typography sizeVariant='c3' colorVariant='secondary'>
+                  Lanjutkan Pembayaran
+                </Typography>
+              </button>
+            }
           </div>
         </div>
         {showSuccessModal && (
@@ -150,7 +148,7 @@ function Payment() {
           <FailedModal
             href={`/payment/${id}`}
             onClick={() => setShowFailedModal(false)}
-            message={responseData?.message}
+            message='Lakukan Login terlebih dahulu'
           />
         )}
       </main>
