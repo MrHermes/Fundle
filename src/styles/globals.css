@@ -14,8 +14,8 @@
     @apply mx-auto w-11/12;
   }
 
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
@@ -38,6 +38,22 @@
   }
 
   .text-error {
-    @apply mt-1 ml-2 text-sm text-red-500;
+    @apply ml-2 mt-1 text-sm text-red-500;
+  }
+
+  .bounce {
+    animation: bounce 1s infinite;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
