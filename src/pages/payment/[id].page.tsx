@@ -1,20 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
+import { floor } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import InputNominal from '@/components/forms/InputNominal';
 import Layout from '@/components/layout/Layout';
-import PopUpBank from '@/components/popUp/bankList';
+import FailedModal from '@/components/modal/failedModal';
+import SuccessModal from '@/components/modal/successModal';
 import ProgressBar from '@/components/progressbars/progressBar';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 import UpperPart from '@/components/upperDetailDonation/upperPart';
-import { DataType, getEventData } from '@/pages/api/event';
-import { useRouter } from 'next/router';
-import { floor } from 'lodash';
+
 import { API_BaseUrl } from '@/constant/env';
-import SuccessModal from '@/components/modal/successModal';
-import FailedModal from '@/components/modal/failedModal';
+import { DataType, getEventData } from '@/pages/api/event';
+import PopUpBank from '@/pages/listDonation/components/bankList';
 
 function Payment() {
   const router = useRouter();

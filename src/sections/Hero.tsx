@@ -1,10 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Typography from '../components/Typography';
 
 function Hero() {
   return (
-    <div>
+    <div id='Hero'>
       <div className='relative -top-24 z-0 h-screen lg:-top-20'>
         <Image
           src='/images/hero.jpg'
@@ -29,11 +30,13 @@ function Hero() {
             Every step they take, might get harder each day. Every penny we
             dump, might be a treasure for them.
           </Typography>
-          <button className='mt-2 rounded-2xl border px-3 py-3 lg:mt-6'>
-            <Typography sizeVariant='c3' colorVariant='secondary'>
-              Donasi Sekarang
-            </Typography>
-          </button>
+          <Link href='/register'>
+            <button className='mt-2 rounded-2xl border px-3 py-3 lg:mt-6'>
+              <Typography sizeVariant='c3' colorVariant='secondary'>
+                Buat Akun
+              </Typography>
+            </button>
+          </Link>
         </div>
       </div>
     </div>

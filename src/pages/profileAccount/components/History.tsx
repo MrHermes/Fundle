@@ -2,11 +2,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import HistoryCard from '@/components/historyList/HistoryCard';
 import Typography from '@/components/Typography';
 
 import { API_BaseUrl } from '@/constant/env';
 import { HistoryType } from '@/pages/api/history';
+import HistoryCard from '@/pages/profileAccount/components/HistoryCard';
 
 function History() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,7 +35,7 @@ function History() {
         const response = await axios.get(url, config);
 
         setHistoryList(response.data.data);
-        console.log(response.data.data);
+        // console.log(response.data.data);
         // console.log(response.data);
         // console.log(response.data.data.length);
         setIsAuthenticated(true);
@@ -83,7 +83,7 @@ function History() {
                 />
               ))
             ) : (
-              <Typography sizeVariant='c1' colorVariant='primary'>
+              <Typography sizeVariant='c2' colorVariant='primary'>
                 Belum Ada Galang Dana yang Dibuat
               </Typography>
             )}

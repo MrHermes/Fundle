@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 
 import { API_BaseUrl } from '@/constant/env';
 import { GetMeType } from '@/pages/api/profile';
-import Cta from '@/sections/Cta';
-import History from '@/sections/History';
-import User from '@/sections/User';
+import Cta from '@/pages/profileAccount/components/Cta';
+import History from '@/pages/profileAccount/components/History';
+import User from '@/pages/profileAccount/components/User';
 
 export default function ProfilePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,9 +20,11 @@ export default function ProfilePage() {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       // console.log(token);
-      if (!token) {
+      if (token) {
+        setIsAuthenticated(true);
+      } else if (!token) {
+        toast.error('Akun Belum Terdaftar');
         window.location.href = '/login';
-        return;
       }
 
       const config = {
@@ -36,12 +39,12 @@ export default function ProfilePage() {
 
         setIsAuthenticated(true);
       } catch (error: any) {
-        // console.error(error);
-        if (axios.isAxiosError(error) && error.response?.status === 401) {
-          localStorage.removeItem('token');
-          setIsAuthenticated(false);
-          window.location.href = '/login';
-        }
+        // // console.error(error);
+        // if (axios.isAxiosError(error) && error.response?.status === 401) {
+        //   localStorage.removeItem('token');
+        //   setIsAuthenticated(false);
+        //   window.location.href = '/login';
+        // }
       }
     };
     fetchData();

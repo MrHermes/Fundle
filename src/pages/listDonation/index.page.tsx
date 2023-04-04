@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 
-import ListDonationCard from '@/components/donationList/ListDonationCard';
-import SearchBar from '@/components/donationList/SearchBar';
 import Layout from '@/components/layout/Layout';
 import Loader from '@/components/loader/Loader';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
 import { DonationListType, get3Event } from '@/pages/api/event';
+import ListDonationCard from '@/pages/listDonation/components/ListDonationCard';
+import SearchBar from '@/pages/listDonation/components/SearchBar';
 
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
@@ -93,7 +94,7 @@ export default function HomePage() {
               <>
                 {filteredDonasiList.length > 0 ? (
                   filteredDonasiList.map((item, index) => (
-                    <Link key={index} href={`/sandbox/listDonation/${item.id}`}>
+                    <Link key={index} href={`/listDonation/${item.id}`}>
                       <ListDonationCard
                         index={index + 1}
                         id={item.id}

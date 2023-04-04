@@ -9,8 +9,8 @@ const NavbarLink = [
   { link: '/#Hero', title: 'Beranda' },
   { link: '/#About', title: 'Tentang' },
   { link: '/#Service', title: 'Layanan' },
-  { link: '/DonationList', title: 'Donasi' },
-  { link: '/sandbox/profileAccount', title: 'Profil' },
+  { link: '/listDonation', title: 'Donasi' },
+  { link: '/profileAccount', title: 'Profil' },
 ];
 
 function Header() {
@@ -41,7 +41,7 @@ function Header() {
         transition={{ duration: 1, delay: 0.1, ease: 'easeInOut' }}
       >
         <div className='layout flex flex-row flex-wrap justify-between py-6'>
-          <Link href='/sandbox/landing'>
+          <Link href='/'>
             <Image
               src='/images/fundle.svg'
               alt='Fundle'

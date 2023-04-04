@@ -7,7 +7,7 @@ import Poster from '@/sections/Poster';
 
 const AboutUs = () => {
   return (
-    <section className='mt-6 bg-primary-500'>
+    <section id='About' className='mt-6 bg-primary-500'>
       <Poster />
       <div className='container mx-auto w-11/12'>
         <Typography
@@ -15,7 +15,7 @@ const AboutUs = () => {
           colorVariant='primary'
           className='pb-4 text-center font-extrabold'
         >
-          Reliable Partner{' '}
+          Reliable Partner
           <span style={{ fontWeight: 'normal' }}>that Delivers More.</span>
         </Typography>
         <Typography sizeVariant='c2' className='text-center'>

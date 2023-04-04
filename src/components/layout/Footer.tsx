@@ -30,13 +30,16 @@ function Footer() {
       />
       <div className='layout absolute left-10 right-10 top-[calc(10rem+4px)] flex h-max flex-row flex-wrap justify-between align-middle lg:top-28'>
         <div>
-          <Typography
-            sizeVariant='h2'
-            colorVariant='secondary'
-            className='font-bold'
-          >
-            fundle
-          </Typography>
+          <Link href='/'>
+            <Typography
+              sizeVariant='h2'
+              colorVariant='secondary'
+              className='font-bold'
+            >
+              fundle
+            </Typography>
+          </Link>
+
           <Typography sizeVariant='c1' colorVariant='secondary'>
             PT Tanda Bakti Nusantara
           </Typography>

@@ -27,7 +27,7 @@ const Poster = () => {
           </Typography>
           <div className='flex'>
             <ButtonLink
-              href='/'
+              href='/listDonation'
               className='py-[10px] px-[20px] text-center font-semibold hover:bg-secondary-200'
             >
               DONASI SEKARANG

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -199,6 +200,18 @@ function Register() {
                   )}
                 </form>
               </FormProvider>
+              <div className='mt-2 flex justify-end gap-2'>
+                <Typography sizeVariant='c4'>Sudah punya akun?</Typography>
+                <Link href='/login'>
+                  <Typography
+                    sizeVariant='c4'
+                    colorVariant='tertiary'
+                    className='hover:text-primary-600'
+                  >
+                    Masuk
+                  </Typography>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

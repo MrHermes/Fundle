@@ -17,7 +17,7 @@ function Service() {
   SwiperCore.use([Navigation, Pagination]);
 
   return (
-    <section className='pb-20'>
+    <section id='Service' className='pb-20'>
       <div className='layout rounded-[80px] bg-primary-200'>
         <div className='styles.sliderWrapper flex flex-col items-center p-16 text-center'>
           <div className='pb-14'>
