@@ -8,11 +8,12 @@ interface Props {
   message: string;
   href: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
+
 }
 
 const FailedModal = ({ message, onClick, href }: Props) => {
   return (
-    <div className='fixed inset-0 z-10 overflow-y-auto'>
+    <div className='fixed inset-0 z-50 overflow-y-auto'>
       <div className='flex min-h-screen items-center justify-center px-4 pb-20 pt-4 text-center sm:block sm:p-0'>
         <div className='fixed inset-0 transition-opacity'>
           <div className='absolute inset-0 bg-gray-500 opacity-75'></div>
