@@ -1,17 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 
-import ListDonationCard from '@/pages/listDonation/components/ListDonationCard';
-import SearchBar from '@/pages/listDonation/components/SearchBar';
 import Layout from '@/components/layout/Layout';
 import Loader from '@/components/loader/Loader';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 
-import { DonationListType, get3Event, getAllEvent } from '@/pages/api/event';
 import { API_BaseUrl } from '@/constant/env';
+import { DonationListType, get3Event, getAllEvent } from '@/pages/api/event';
+import ListDonationCard from '@/pages/listDonation/components/ListDonationCard';
+import SearchBar from '@/pages/listDonation/components/SearchBar';
 
 export default function HomePage() {
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,9 @@ export default function HomePage() {
   const [pagination, setPagination] = useState(2);
   const [searchTimeout, setSearchTimeout] = useState<any | null>(null);
   const [donationList, setDonationList] = useState<DonationListType[]>([]);
-  const [filteredDonasiList, setFilteredDonasiList] = useState<DonationListType[]>([]);
+  const [filteredDonasiList, setFilteredDonasiList] = useState<
+    DonationListType[]
+  >([]);
   const [AllDonasiList, setAllDonasiList] = useState<DonationListType[]>([]);
 
   useEffect(() => {
@@ -48,11 +51,11 @@ export default function HomePage() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            page_number: 1
-          })
+            page_number: 1,
+          }),
         });
       } catch (error) {
-        throw new Error("Error Pagination");
+        throw new Error('Error Pagination');
       }
     };
     assignPagination();
@@ -79,11 +82,10 @@ export default function HomePage() {
   const handleSearch = (query: string) => {
     setLoading(true);
     clearTimeout(searchTimeout);
-    if(query === "") {
+    if (query === '') {
       setFilteredDonasiList(donationList);
-      setOriginal(true)
-    }
-    else {
+      setOriginal(true);
+    } else {
       setOriginal(false);
       setSearchTimeout(
         setTimeout(() => {
@@ -95,12 +97,10 @@ export default function HomePage() {
         }, 500)
       );
     }
-
-    
   };
   //console.log(filteredDonasiList.length)
-  const handleSubmit = async (e : any) => {
-    setPagination(pagination+1);
+  const handleSubmit = async (e: any) => {
+    setPagination(pagination + 1);
     // console.log("pagination :")
     // console.log(pagination);
     e.preventDefault();
@@ -111,20 +111,20 @@ export default function HomePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          page_number: pagination
-        })
+          page_number: pagination,
+        }),
       });
       // const data = await response.json();
       // console.log(data.data);
-      try{
+      try {
         const data = await get3Event();
         setDonationList(data.data);
         setFilteredDonasiList(data.data);
-      }catch{
-        throw new Error("Error pagination");
+      } catch {
+        throw new Error('Error pagination');
       }
     } catch (error) {
-      throw new Error("Error Pagination");
+      throw new Error('Error Pagination');
     }
   };
 
@@ -169,26 +169,30 @@ export default function HomePage() {
                 {filteredDonasiList.length > 0 ? (
                   <div>
                     {filteredDonasiList.map((item, index) => (
-
-                        <Link key={index} href={`/listDonation/${item.id}`}>
-                          <ListDonationCard
-                            index={index + 1}
-                            id={item.id}
-                            title={item.judul_event}
-                            imgUrl={
-                              item.foto_event.startsWith('https:') &&
-                              item.foto_event != 'https://example.com/foto.jpg'
-                                ? item.foto_event
-                                : '/images/dummy-poster.svg'
-                                
-                            }
-                            desc={item.deskripsi_event}
-                          />
-                        </Link>
+                      <Link key={index} href={`/listDonation/${item.id}`}>
+                        <ListDonationCard
+                          index={index + 1}
+                          id={item.id}
+                          title={item.judul_event}
+                          imgUrl={
+                            item.foto_event.startsWith('https:') &&
+                            item.foto_event != 'https://example.com/foto.jpg'
+                              ? item.foto_event
+                              : '/images/dummy-poster.svg'
+                          }
+                          desc={item.deskripsi_event}
+                        />
+                      </Link>
                     ))}
-                    <form className='flex justify-center' onSubmit={handleSubmit}>
-                      {donationList.length != dataLength && original ?
-                        <button className='bg-primary-100 px-4 py-3 rounded-xl' type='submit'>
+                    <form
+                      className='flex justify-center'
+                      onSubmit={handleSubmit}
+                    >
+                      {donationList.length != dataLength && original ? (
+                        <button
+                          className='rounded-xl bg-primary-100 px-4 py-3'
+                          type='submit'
+                        >
                           <Typography
                             colorVariant='secondary'
                             sizeVariant='c4'
@@ -196,10 +200,8 @@ export default function HomePage() {
                           >
                             Load More
                           </Typography>
-                        </button> :
-                        null
-                      }
-                      
+                        </button>
+                      ) : null}
                     </form>
                   </div>
                 ) : (

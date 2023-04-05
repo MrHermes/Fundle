@@ -1,4 +1,8 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from 'axios';
+import { floor } from 'lodash';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 // Import Swiper styles
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,13 +12,38 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 import DonationCard from '@/components/landingPage/DonationCard';
+import Loader from '@/components/loader/Loader';
 import Typography from '@/components/Typography';
 
-import { listPhotos } from '@/constant/listPhotos';
+import { API_BaseUrl } from '@/constant/env';
+import { DonationListType } from '@/pages/api/event';
 
 function Service() {
   SwiperCore.use([Autoplay]);
   SwiperCore.use([Navigation, Pagination]);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [donationList, setDonationList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const listResponse = await axios.get(`${API_BaseUrl}api/event/service`);
+        const list = listResponse.data.data;
+        // console.log(list);
+
+        setDonationList(list);
+        setIsLoading(false);
+      } catch (error: any) {
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        }
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <section id='Service' className='pb-20'>
@@ -49,16 +78,35 @@ function Service() {
             className='swiper-container'
           >
             <div className='group flex'>
-              {listPhotos.map((photo, index) => (
-                <SwiperSlide key={index} className='m-auto'>
-                  <DonationCard
-                    id={photo.id}
-                    imgUrl={photo.imgUrl}
-                    title={photo.title}
-                    desc={photo.desc}
-                  />
-                </SwiperSlide>
-              ))}
+              {isLoading ? (
+                <div className='w-full'>
+                  <Loader />
+                </div>
+              ) : (
+                <>
+                  {donationList &&
+                    donationList.map((photo: DonationListType) => (
+                      <SwiperSlide key={photo.id} className='m-auto'>
+                        <Link href={`/listDonation/${photo.id}`}>
+                          <DonationCard
+                            id={photo.id}
+                            imgUrl={
+                              photo.foto_event.startsWith('https:') &&
+                              photo.foto_event != 'https://example.com/foto.jpg'
+                                ? photo.foto_event
+                                : '/images/dummy-poster.svg'
+                            }
+                            progress={floor(
+                              (photo.jumlah_donasi / photo.max_donasi) * 100
+                            )}
+                            title={photo.judul_event}
+                            desc={photo.deskripsi_event}
+                          />
+                        </Link>
+                      </SwiperSlide>
+                    ))}
+                </>
+              )}
             </div>
           </Swiper>
         </div>

@@ -60,17 +60,17 @@ function DetailDonation() {
           <ProgressBar progress={data} />
         </div>
 
-        <div className='rounded-xl bg-primary-500 p-5 transition duration-500 hover:scale-105'>
+        <div className='rounded-xl bg-primary-500 p-5 px-10'>
           {/* Deskripsi Donasi */}
           <Typography
-            sizeVariant='h4'
+            sizeVariant='h5'
             colorVariant='primary'
             className='font-bold'
           >
             Tentang Donasi
           </Typography>
           <Typography
-            sizeVariant='c4'
+            sizeVariant='c2'
             colorVariant='primary'
             className='mt-2 text-justify'
           >

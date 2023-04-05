@@ -312,8 +312,10 @@ export default function UploadPage() {
                           validation={{
                             required: '* Foto harus diisi',
                             pattern: {
-                              value: /^(https?:\/\/)?[a-zA-Z0-9]+\.[a-zA-Z0-9]+[^\s]*$/,
-                              message: '* Format URL harus sesuai (https://www.example.com)',
+                              value:
+                                /^(https?:\/\/)?[a-zA-Z0-9]+\.[a-zA-Z0-9]+[^\s]*$/,
+                              message:
+                                '* Format URL harus sesuai (https://www.example.com)',
                             },
                           }}
                         />
