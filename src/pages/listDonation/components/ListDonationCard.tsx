@@ -9,6 +9,8 @@ interface ListDonationProps {
   title: string;
   imgUrl: string;
   desc: string;
+  max_donasi: number;
+  jumlah_donasi: number;
 }
 
 function ListDonationCard({
@@ -17,6 +19,8 @@ function ListDonationCard({
   title,
   imgUrl,
   desc,
+  max_donasi,
+  jumlah_donasi,
 }: ListDonationProps) {
   return (
     <div className='pb-10'>
@@ -45,13 +49,13 @@ function ListDonationCard({
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Donasi
               </Typography>
-              <Typography>Rp 5.000.000</Typography>
-              <Typography>Terkumpul dari Rp 5.000.000</Typography>
+              <Typography>Rp {jumlah_donasi}</Typography>
+              <Typography>Terkumpul dari {max_donasi}</Typography>
             </div>
           </div>
         </div>
       ) : (
-        <div className='flex px-10 transition duration-500 h-max hover:scale-105'>
+        <div className='flex h-max px-10 transition duration-500 hover:scale-105'>
           <Image
             src={imgUrl}
             id={id}
