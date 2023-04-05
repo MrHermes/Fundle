@@ -17,7 +17,7 @@ function HistoryProps({ id, imgUrl, title, desc, href }: HistoryProps) {
     <div className='max-w-[26rem]'>
       <div className='mr-[4vh] drop-shadow-lg'>
         <Image
-          src={imgUrl}
+          src={imgUrl != "https://example.com/foto.jpg" ? imgUrl : "images/dummy-poster.svg"}
           alt={title}
           width={350}
           height={100}
