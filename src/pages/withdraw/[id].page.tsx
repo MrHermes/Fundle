@@ -48,7 +48,7 @@ function Withdrawal() {
     // console.log(id);
     // console.log(nominal);
     try {
-      const response = await fetch(`${API_BaseUrl}api/user/transaksi/${id}`, {
+      const response = await fetch(`${API_BaseUrl}api/penarikan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
