@@ -34,7 +34,6 @@ function InputPassword({
   const toggleShow = () => setShowPassword(!showPassword);
 
   return (
-    
     <div>
       <input
         {...register(id, validation)}
@@ -42,10 +41,14 @@ function InputPassword({
         id={id}
         type={showPassword ? 'password' : 'text'}
         placeholder={placeholder}
-        className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base py-4
-                   ${className}`}
+        className={`w-full rounded-xl border-none bg-primary-200 py-4 pl-4 text-base
+                    focus:ring-primary-100 ${className}`}
       />
-      <button onClick={toggleShow} type='button' className='absolute -ml-10 mt-4'>
+      <button
+        onClick={toggleShow}
+        type='button'
+        className='absolute -ml-10 mt-4'
+      >
         <Typography
           sizeVariant='c1'
           className='text-gray-800/80 hover:text-gray-800'
@@ -57,7 +60,7 @@ function InputPassword({
         <Typography
           sizeVariant='c4'
           colorVariant='tertiary'
-          className='mt-1 ml-2'
+          className='ml-2 mt-1'
         >
           {helperText}
         </Typography>

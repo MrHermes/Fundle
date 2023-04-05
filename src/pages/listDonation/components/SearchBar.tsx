@@ -1,30 +1,35 @@
+import { debounce } from 'lodash';
 import React, { HTMLInputTypeAttribute, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
 import Typography from '@/components/Typography';
-import { debounce } from 'lodash';
 
 interface SearchBarProps {
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
   className?: string;
-  onChange: (query: string) => void
+  onChange: (query: string) => void;
 }
 
-function SearchBar({ placeholder, type = 'text', className , onChange}: SearchBarProps) {
-  const [query, setQuery] = useState('')
+function SearchBar({
+  placeholder,
+  type = 'text',
+  className,
+  onChange,
+}: SearchBarProps) {
+  const [query, setQuery] = useState('');
 
-  const handleSearch = ((data:string) => onChange(data))
+  const handleSearch = (data: string) => onChange(data);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
+    setQuery(event.target.value);
 
     const delayedSearch = debounce(() => {
-      handleSearch(event.target.value)
-    }, 300)
+      handleSearch(event.target.value);
+    }, 300);
 
-    delayedSearch()
-  }
+    delayedSearch();
+  };
 
   return (
     <div className='layout flex w-full justify-center'>
@@ -37,7 +42,8 @@ function SearchBar({ placeholder, type = 'text', className , onChange}: SearchBa
           onChange={handleInputChange}
           // onKeyDown={handleEnterSearch}
           className={`${className} layout absolute -mt-7 w-11/12 rounded-3xl
-        border-none bg-primary-500 p-3 px-5 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]`}
+        border-none bg-primary-500 p-3 px-5 text-lg shadow-[4px_6px_10px_rgba(147,217,195,1)]
+        focus:ring-primary-100`}
         />
       </div>
       <button onClick={() => onChange(query)}>
@@ -46,7 +52,7 @@ function SearchBar({ placeholder, type = 'text', className , onChange}: SearchBa
           colorVariant='tertiary'
           className='flex items-center justify-end'
         >
-          <BiSearch className='absolute mr-6 mb-2 hover:text-primary-600' />
+          <BiSearch className='absolute mb-2 mr-6 hover:text-primary-600' />
         </Typography>
       </button>
 

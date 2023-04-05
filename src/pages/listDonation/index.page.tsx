@@ -181,6 +181,8 @@ export default function HomePage() {
                               : '/images/dummy-poster.svg'
                           }
                           desc={item.deskripsi_event}
+                          jumlah_donasi={item.jumlah_donasi}
+                          max_donasi={item.max_donasi}
                         />
                       </Link>
                     ))}
@@ -190,7 +192,7 @@ export default function HomePage() {
                     >
                       {donationList.length != dataLength && original ? (
                         <button
-                          className='rounded-xl bg-primary-100 px-4 py-3'
+                          className='rounded-xl bg-primary-100 px-4 py-3 transition hover:bg-primary-600'
                           type='submit'
                         >
                           <Typography

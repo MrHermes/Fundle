@@ -101,7 +101,7 @@ function Register() {
                 Sebarkan Kebaikan dan Kebahagiaan
               </Typography>
             </div>
-            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 pb-44 pt-32'>
+            <div className='w-3/5 rounded-[30px] bg-primary-500 px-20 pb-36 pt-32'>
               <Typography
                 sizeVariant='h2'
                 colorVariant='tertiary'
@@ -179,7 +179,7 @@ function Register() {
                   />
                   <button
                     type='submit'
-                    className='w-full rounded-xl bg-primary-100 p-3 hover:bg-primary-600'
+                    className='w-full rounded-xl bg-primary-100 p-3 transition hover:bg-primary-600'
                   >
                     <Typography sizeVariant='c2' colorVariant='secondary'>
                       Daftar

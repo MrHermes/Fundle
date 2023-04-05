@@ -10,12 +10,12 @@ function InputNominal() {
   } = useFormContext();
 
   return (
-    <div className='rounded-xl bg-primary-200 p-2'>
+    <div className='rounded-xl bg-primary-200 p-2 px-4'>
       <div className='flex h-max flex-row justify-between'>
         <Typography
           sizeVariant='c2'
           colorVariant='primary'
-          className='my-auto mr-3 font-bold'
+          className='my-auto ml-2 font-bold'
         >
           Rp.
         </Typography>
@@ -29,7 +29,7 @@ function InputNominal() {
             id='nominal'
             type='number'
             defaultValue={10000}
-            className='w-full appearance-none border-transparent bg-inherit text-right text-xl font-bold focus:shadow-none'
+            className='w-full appearance-none border-none bg-inherit text-right text-xl font-bold focus:shadow-none focus:ring-0'
           />
           {errors &&
             (errors.nominal?.type === 'min' ||

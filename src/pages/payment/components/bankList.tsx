@@ -54,12 +54,12 @@ function PopUpBank({ isOpen, onClose }: PopUpBankProp) {
             Pilih Metode Pembayaran
           </Typography>
         </div>
-        {BankList.map(( BankList, index ) => (
+        {BankList.map((BankList, index) => (
           <div
             key={index}
             style={
               selected == BankList.id
-                ? { outline: '2px solid' }
+                ? { outline: '2px solid #06A371' }
                 : { outline: '2px solid transparent' }
             }
             className='m-3 flex min-w-[20rem] flex-row rounded-xl bg-primary-200 px-3 py-2 shadow-xl hover:shadow-2xl'
@@ -76,7 +76,7 @@ function PopUpBank({ isOpen, onClose }: PopUpBankProp) {
             />
             <label
               htmlFor={BankList.value}
-              className='h-full w-full cursor-pointer flex flex-row'
+              className='flex h-full w-full cursor-pointer flex-row'
             >
               <div className='min-w-40 px-auto'>
                 <Image
@@ -87,7 +87,11 @@ function PopUpBank({ isOpen, onClose }: PopUpBankProp) {
                   className='h-10 w-20'
                 />
               </div>
-              <Typography sizeVariant='c3' colorVariant='primary' className='my-auto ml-3'>
+              <Typography
+                sizeVariant='c3'
+                colorVariant='primary'
+                className='my-auto ml-3'
+              >
                 {BankList.value}
               </Typography>
             </label>
@@ -96,7 +100,7 @@ function PopUpBank({ isOpen, onClose }: PopUpBankProp) {
         <div className='flex justify-center'>
           <button
             type='submit'
-            className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3'
+            className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3 focus:bg-secondary-200'
           >
             <Typography sizeVariant='c4' colorVariant='secondary'>
               Lanjut

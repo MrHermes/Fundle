@@ -130,7 +130,7 @@ function Login() {
                   <div>
                     <button
                       type='submit'
-                      className='w-full rounded-xl bg-primary-100 p-3 hover:bg-[#23926f]'
+                      className='w-full rounded-xl bg-primary-100 p-3 transition hover:bg-[#23926f]'
                     >
                       <Typography sizeVariant='c2' colorVariant='secondary'>
                         Masuk

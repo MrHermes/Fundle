@@ -33,8 +33,8 @@ const Cta = () => {
           </Typography>
           <div className='flex'>
             <ButtonLink
-              href='/uploadDonation'
-              className='py-[15px] px-[30px] text-center font-semibold hover:bg-secondary-200'
+              href='/upload-donation'
+              className='px-[30px] py-[15px] text-center font-semibold hover:bg-secondary-200'
             >
               BUAT SEKARANG
             </ButtonLink>

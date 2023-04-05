@@ -28,7 +28,7 @@ function TextArea({ label, id, validation, placeholder, className }: Props) {
           rows={6}
           placeholder={placeholder}
           className={`w-full rounded-xl border-none bg-primary-200 py-4 pl-4 text-base
-          ${className}`}
+                    focus:ring-primary-100 ${className}`}
         />
         {error && (
           <p className='text-error' data-testid='error-message'>

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import InputNominal from '@/components/forms/InputNominal';
 import Layout from '@/components/layout/Layout';
 import FailedModal from '@/components/modal/failedModal';
 import SuccessModal from '@/components/modal/successModal';
@@ -16,7 +15,8 @@ import UpperPart from '@/components/upperDetailDonation/upperPart';
 
 import { API_BaseUrl } from '@/constant/env';
 import { DataType, getEventData } from '@/pages/api/event';
-import PopUpBank from '@/pages/listDonation/components/bankList';
+import PopUpBank from '@/pages/payment/components/bankList';
+import InputNominal from '@/pages/payment/components/InputNominal';
 
 function Payment() {
   const router = useRouter();
@@ -35,7 +35,7 @@ function Payment() {
   const closeConfirmation = () => {
     setOpen(false);
     setShowSuccessModal(false);
-  } 
+  };
 
   const { handleSubmit } = methods;
 
@@ -64,11 +64,11 @@ function Payment() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
-          jumlah : parseInt(data.nominal),
-          list_bank_id : parseInt(data.bank)
+          jumlah: parseInt(data.nominal),
+          list_bank_id: parseInt(data.bank),
         }),
       });
       if (response.ok) {
@@ -77,7 +77,7 @@ function Payment() {
         setShowFailedModal(true);
       }
     } catch (error) {
-      throw new Error("Error Payment");
+      throw new Error('Error Payment');
     }
   };
 
@@ -104,7 +104,7 @@ function Payment() {
           <ProgressBar progress={data} />
         </div>
 
-        <div className='mt-5 w-full rounded-xl bg-primary-500 p-5'>
+        <div className='mt-5 w-full rounded-xl bg-primary-500 p-5 px-8'>
           <Typography
             sizeVariant='c2'
             colorVariant='primary'
@@ -121,22 +121,22 @@ function Payment() {
           </FormProvider>
 
           <div className='flex justify-center'>
-            {donation?.is_target_full || donation?.is_expired ? 
-              <div className='w-25 mt-5 rounded-xl bg-secondary-500 px-5 py-3 border-solid border-2'>
+            {donation?.is_target_full || donation?.is_expired ? (
+              <div className='w-25 bg-secondary-500 mt-5 rounded-xl border-2 border-solid px-5 py-3'>
                 <Typography sizeVariant='c3' colorVariant='primary'>
                   Donasi Ditutup
                 </Typography>
-              </div> 
-              :
+              </div>
+            ) : (
               <button
-                className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3'
+                className='w-25 mt-5 rounded-xl bg-secondary-100 px-5 py-3 transition hover:bg-secondary-200'
                 onClick={openModal}
               >
                 <Typography sizeVariant='c3' colorVariant='secondary'>
                   Lanjutkan Pembayaran
                 </Typography>
               </button>
-            }
+            )}
           </div>
         </div>
         {showSuccessModal && (
@@ -148,7 +148,7 @@ function Payment() {
         )}
         {showFailedModal && (
           <FailedModal
-            href={`/payment/${id}`}
+            href='/login'
             onClick={() => setShowFailedModal(false)}
             message='Lakukan Login terlebih dahulu'
           />

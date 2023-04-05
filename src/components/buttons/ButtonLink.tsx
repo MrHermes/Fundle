@@ -13,7 +13,7 @@ function ButtonLink({ children, href, className }: ButtonProps) {
     <a href={href}>
       <Typography
         colorVariant='secondary'
-        className={`${className} rounded-3xl bg-secondary-100`}
+        className={`${className} rounded-3xl bg-secondary-100 transition`}
       >
         {children}
       </Typography>

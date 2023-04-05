@@ -38,14 +38,14 @@ function Input({
           id={id}
           placeholder={placeholder}
           type={type}
-          className={`w-full rounded-xl border-none bg-primary-200 pl-4 text-base py-4
-                      ${className}`}
+          className={`w-full rounded-xl border-none bg-primary-200 py-4 pl-4 text-base
+                    focus:ring-primary-100 ${className}`}
         />
         {!(showError && error) && helperText && (
           <Typography
             sizeVariant='c4'
             colorVariant='tertiary'
-            className='mt-1 ml-2 '
+            className='ml-2 mt-1 '
           >
             {helperText}
           </Typography>

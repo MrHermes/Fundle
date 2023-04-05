@@ -53,14 +53,14 @@ export default function DateInput({
                 onChange={onChange}
                 onBlur={onBlur}
                 selected={value ? new Date(value) : undefined}
-                className='w-full rounded-xl border-none bg-primary-200 py-4 pl-4 text-base'
+                className='w-full rounded-xl border-none bg-primary-200 py-4 pl-4 text-base focus:ring-primary-100'
                 openToDate={value ? new Date(value) : defaultDate}
                 dateFormat='dd/MM/yyyy'
                 placeholderText={placeholder}
                 dropdownMode='select'
                 {...rest}
               />
-              <Icon className='pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 transform text-lg text-gray-500' />
+              <Icon className='pointer-events-none absolute right-4 top-4 transform text-lg text-gray-500' />
               {showError && error && (
                 <p className='text-error'>{error?.message?.toString()}</p>
               )}
