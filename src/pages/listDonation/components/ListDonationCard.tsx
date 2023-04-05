@@ -51,14 +51,14 @@ function ListDonationCard({
           </div>
         </div>
       ) : (
-        <div className='flex px-10 transition duration-500 hover:scale-105'>
+        <div className='flex px-10 transition duration-500 h-max hover:scale-105'>
           <Image
             src={imgUrl}
             id={id}
             alt='Donation 1'
             width={611}
             height={450}
-            className='order-2 h-[450px] w-1/2 rounded-r-[36px] object-cover shadow-2xl'
+            className='order-2 h-auto w-1/2 rounded-r-[36px] object-cover shadow-2xl'
           />
           <div className='flex w-1/2 flex-col gap-5 rounded-l-[36px] p-16 shadow-2xl'>
             <Typography sizeVariant='h4' className='font-bold'>
