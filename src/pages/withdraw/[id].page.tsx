@@ -1,38 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import { BiTimeFive } from 'react-icons/bi';
 import { RiHandHeartLine } from 'react-icons/ri';
+
 import Layout from '@/components/layout/Layout';
+import SuccessModal from '@/components/modal/successModal';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
-import { DataType, getEventData, getMe } from '@/pages/api/event';
-import { useRouter } from 'next/router';
-import PopUpBank from '@/pages/payment/components/bankList';
-import { FormProvider, useForm } from 'react-hook-form';
+
 import { API_BaseUrl } from '@/constant/env';
-import SuccessModal from '@/components/modal/successModal';
+import { DataType, getEventData, getMe } from '@/pages/api/event';
+import PopUpBank from '@/pages/payment/components/bankList';
 import InputNominal from '@/pages/payment/components/InputNominal';
 
 function Withdrawal() {
-  
   const router = useRouter();
   const { id } = router.query;
   const [donation, setDonation] = useState<DataType>();
-  const [userID, setUserID] = useState("");
-  const [eventUserID, setEventUserID] = useState("");
+  const [userID, setUserID] = useState('');
   const [isOpen, setOpen] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const methods = useForm()
-  const { handleSubmit } = methods
+  const methods = useForm();
+  const { handleSubmit } = methods;
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
   const closeConfirmation = () => {
     setOpen(false);
     setShowSuccessModal(false);
-  } 
-  
+  };
+
   useEffect(() => {
     const fetchEventData = async () => {
       if (typeof id === 'string') {
@@ -46,9 +47,9 @@ function Withdrawal() {
 
   useEffect(() => {
     const fetchUserData = async () => {
-        const data = await getMe();
-        setUserID(data.data.id);
-      }
+      const data = await getMe();
+      setUserID(data.data.id);
+    };
     fetchUserData();
   }, []);
 
@@ -56,9 +57,9 @@ function Withdrawal() {
   // console.log(userID);
   // console.log("donation user ID :");
   // console.log(donation?.user_id);
-  if (userID != donation?.user_id){
+  if (userID != donation?.user_id) {
     return (
-      <div className='flex justify-center items-center h-[100vh]'>
+      <div className='flex h-[100vh] items-center justify-center'>
         <Typography
           sizeVariant='h1'
           colorVariant='tertiary'
@@ -67,13 +68,13 @@ function Withdrawal() {
           Anda tidak dapat mengakses page ini.
         </Typography>
       </div>
-    )
-  } 
+    );
+  }
 
   const onSubmit = async (data: any) => {
     const bank = parseInt(data.bank);
-    const nominal = parseInt(data.nominal)
-    // console.log(bank);    
+    const nominal = parseInt(data.nominal);
+    // console.log(bank);
     // console.log(id);
     // console.log(nominal);
     try {
@@ -81,20 +82,20 @@ function Withdrawal() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`,
         },
         body: JSON.stringify({
-          jumlah_penarikan : nominal,
+          jumlah_penarikan: nominal,
           bank_id: bank,
-          event_id: id
+          event_id: id,
         }),
       });
       if (response.ok) {
         setShowSuccessModal(true);
-      } 
+      }
     } catch (error) {
-      throw new Error("Error Withdraw");
-    }finally {
+      throw new Error('Error Withdraw');
+    } finally {
       window.location.reload();
     }
   };
@@ -110,7 +111,8 @@ function Withdrawal() {
               donation?.foto_event &&
               donation.foto_event != 'https://example.com/foto.jpg'
                 ? donation?.foto_event
-                : '/images/dummy-poster.svg'} //Foto_Event
+                : '/images/dummy-poster.svg'
+            } //Foto_Event
             alt='Poster Image'
             width={640}
             height={480}
@@ -136,13 +138,13 @@ function Withdrawal() {
               colorVariant='tertiary'
               className='font-bold'
             >
-              Rp. {donation?.sisa_donasi ? donation.sisa_donasi: 0}
+              Rp. {donation?.sisa_donasi ? donation.sisa_donasi : 0}
             </Typography>
           </div>
           <Typography
             sizeVariant='c3'
             colorVariant='primary'
-            className='text-center font-bold mt-3 opacity-75'
+            className='mt-3 text-center font-bold opacity-75'
           >
             Total donasi
           </Typography>
@@ -152,18 +154,18 @@ function Withdrawal() {
               colorVariant='tertiary'
               className='font-bold'
             >
-              Rp. {donation?.jumlah_donasi ? donation.jumlah_donasi: 0}
+              Rp. {donation?.jumlah_donasi ? donation.jumlah_donasi : 0}
             </Typography>
             <Typography
               sizeVariant='c3'
               colorVariant='primary'
-              className='font-bold opacity-50 mt-auto'
+              className='mt-auto font-bold opacity-50'
             >
-              /Rp. {donation?.max_donasi ? donation.max_donasi: 0}
+              /Rp. {donation?.max_donasi ? donation.max_donasi : 0}
             </Typography>
           </div>
           <div className='flex flex-row flex-wrap justify-center py-5'>
-            <div className='mx-2 flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl p-2 bg-primary-500 font-semibold shadow-xl border-solid border-2 transition duration-500 hover:scale-110'>
+            <div className='mx-2 flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl border-2 border-solid bg-primary-500 p-2 font-semibold shadow-xl transition duration-500 hover:scale-110'>
               <div className='my-auto text-3xl text-primary-100'>
                 <RiHandHeartLine />
               </div>
@@ -185,7 +187,7 @@ function Withdrawal() {
                 </Typography>
               </div>
             </div>
-            <div className='flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl p-2 bg-primary-500 font-semibold shadow-xl border-solid border-2 transition duration-500 hover:scale-110'>
+            <div className='flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl border-2 border-solid bg-primary-500 p-2 font-semibold shadow-xl transition duration-500 hover:scale-110'>
               <div className='my-auto text-3xl text-primary-100'>
                 <BiTimeFive />
               </div>
@@ -196,7 +198,7 @@ function Withdrawal() {
                   colorVariant='primary'
                   className=''
                 >
-                  {donation?.time_left ? donation.time_left : '0'} 
+                  {donation?.time_left ? donation.time_left : '0'}
                 </Typography>
                 <Typography
                   sizeVariant='c3'
@@ -209,33 +211,29 @@ function Withdrawal() {
             </div>
           </div>
           <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 mx-auto'>
-              <InputNominal max_withdraw={donation?.sisa_donasi}/>
+            <form onSubmit={handleSubmit(onSubmit)} className='mx-auto w-5/6'>
+              <InputNominal max_withdraw={donation?.sisa_donasi} />
               {/* Pop Up Window */}
               <PopUpBank isOpen={isOpen} onClose={closeModal} />
             </form>
           </FormProvider>
-          <div className='pb-5 flex justify-center mt-5'>
-            {
-              donation?.sisa_donasi != 0 || donation?.is_expired ? 
-              (
-                <button
-                  className='w-25 mx-auto rounded-xl bg-secondary-100 px-5 py-3'
-                  onClick={openModal}
-                >
-                  <Typography sizeVariant='c3' colorVariant='secondary'>
-                    Lakukan penarikan
-                  </Typography>
-                </button>
-              ) : (
-                <div className='w-25 mx-auto rounded-xl shadow-xl bg-primary-500 px-5 py-3 border-solid border-2'>
-                  <Typography sizeVariant='c3' colorVariant='primary'>
-                    Belum dapat melakukan penarikan
-                  </Typography>
-                </div>
-              )
-            }
-            
+          <div className='mt-5 flex justify-center pb-5'>
+            {donation?.sisa_donasi != 0 || donation?.is_expired ? (
+              <button
+                className='w-25 mx-auto rounded-xl bg-secondary-100 px-5 py-3'
+                onClick={openModal}
+              >
+                <Typography sizeVariant='c3' colorVariant='secondary'>
+                  Lakukan penarikan
+                </Typography>
+              </button>
+            ) : (
+              <div className='w-25 mx-auto rounded-xl border-2 border-solid bg-primary-500 px-5 py-3 shadow-xl'>
+                <Typography sizeVariant='c3' colorVariant='primary'>
+                  Belum dapat melakukan penarikan
+                </Typography>
+              </div>
+            )}
           </div>
         </div>
         {showSuccessModal && (
@@ -251,4 +249,3 @@ function Withdrawal() {
 }
 
 export default Withdrawal;
-
