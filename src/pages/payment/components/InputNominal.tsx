@@ -3,7 +3,11 @@ import { useFormContext } from 'react-hook-form';
 
 import Typography from '@/components/Typography';
 
-function InputNominal() {
+type inputType = {
+  max_withdraw? : number;
+}
+
+function InputNominal( {max_withdraw = 1000000000}: inputType ) {
   const {
     register,
     formState: { errors },
@@ -24,7 +28,7 @@ function InputNominal() {
             {...register('nominal', {
               required: true,
               min: 1000,
-              max: 1000000000,
+              max: max_withdraw,
             })}
             id='nominal'
             type='number'

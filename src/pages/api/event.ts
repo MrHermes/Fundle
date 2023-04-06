@@ -39,6 +39,7 @@ export type DataType = {
   foto_event: string;
   max_donasi: number;
   jumlah_donasi: number;
+  sisa_donasi: number;
   like_count: number;
   expired_donasi: string;
   time_left: string;

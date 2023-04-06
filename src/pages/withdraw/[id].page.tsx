@@ -7,10 +7,11 @@ import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 import { DataType, getEventData } from '@/pages/api/event';
 import { useRouter } from 'next/router';
-import PopUpBank from '@/pages/listDonation/components/BankList';
+import PopUpBank from '@/pages/payment/components/bankList';
 import { FormProvider, useForm } from 'react-hook-form';
 import { API_BaseUrl } from '@/constant/env';
 import SuccessModal from '@/components/modal/successModal';
+import InputNominal from '@/pages/payment/components/InputNominal';
 
 function Withdrawal() {
   
@@ -25,10 +26,10 @@ function Withdrawal() {
 
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
-  // const closeConfirmation = () => {
-  //   setOpen(false);
-  //   setShowSuccessModal(false);
-  // } 
+  const closeConfirmation = () => {
+    setOpen(false);
+    setShowSuccessModal(false);
+  } 
   
   useEffect(() => {
     const fetchEventData = async () => {
@@ -43,7 +44,7 @@ function Withdrawal() {
 
   const onSubmit = async (data: any) => {
     const bank = parseInt(data.bank);
-    const nominal = (typeof donation?.jumlah_donasi === "number" ? donation.jumlah_donasi : 0)
+    const nominal = parseInt(data.nominal)
     // console.log(bank);    
     // console.log(id);
     // console.log(nominal);
@@ -83,7 +84,7 @@ function Withdrawal() {
             alt='Poster Image'
             width={640}
             height={480}
-            className='h-40 w-full rounded-xl object-cover'
+            className=' h-60 w-full rounded-xl object-cover'
           />
           <Typography
             sizeVariant='h4'
@@ -93,28 +94,42 @@ function Withdrawal() {
             {donation?.judul_event ? donation.judul_event : ''}
           </Typography>
           <Typography
-            sizeVariant='c3'
+            sizeVariant='c2'
             colorVariant='primary'
             className='text-center font-bold opacity-50'
           >
-            Jumlah Donasi Terkumpul
+            Jumlah Uang yang dapat ditarik
           </Typography>
           <div className='flex flex-row flex-wrap justify-center'>
-            {/* Jumlah_Donasi */}
             <Typography
               sizeVariant='h6'
               colorVariant='tertiary'
               className='font-bold'
             >
-              Rp. {donation?.jumlah_donasi ? donation.jumlah_donasi : 0}
+              Rp. {donation?.sisa_donasi ? donation.sisa_donasi: 0}
             </Typography>
-            {/* Target_Donasi */}
+          </div>
+          <Typography
+            sizeVariant='c3'
+            colorVariant='primary'
+            className='text-center font-bold mt-3 opacity-75'
+          >
+            Total donasi
+          </Typography>
+          <div className='flex flex-row flex-wrap justify-center'>
+            <Typography
+              sizeVariant='c1'
+              colorVariant='tertiary'
+              className='font-bold'
+            >
+              Rp. {donation?.jumlah_donasi ? donation.jumlah_donasi: 0}
+            </Typography>
             <Typography
               sizeVariant='c3'
               colorVariant='primary'
-              className='mt-auto font-bold opacity-50'
+              className='font-bold opacity-50 mt-auto'
             >
-              /Rp. {donation?.max_donasi ? donation.max_donasi : 0}
+              /Rp. {donation?.max_donasi ? donation.max_donasi: 0}
             </Typography>
           </div>
           <div className='flex flex-row flex-wrap justify-center py-5'>
@@ -164,14 +179,15 @@ function Withdrawal() {
             </div>
           </div>
           <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className='w-full'>
+            <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 mx-auto'>
+              <InputNominal max_withdraw={donation?.sisa_donasi}/>
               {/* Pop Up Window */}
               <PopUpBank isOpen={isOpen} onClose={closeModal} />
             </form>
           </FormProvider>
-          <div className='pb-5 flex justify-center'>
+          <div className='pb-5 flex justify-center mt-5'>
             {
-              donation?.is_target_full || donation?.is_expired ? 
+              donation?.sisa_donasi != 0 || donation?.is_expired ? 
               (
                 <button
                   className='w-25 mx-auto rounded-xl bg-secondary-100 px-5 py-3'
@@ -194,9 +210,9 @@ function Withdrawal() {
         </div>
         {showSuccessModal && (
           <SuccessModal
-            href="/profileAccount"
-            message='Berhasil menyalurkan donasi'
-            // onClose={closeConfirmation}
+            href={`/withdraw/${id}`}
+            message='Berhasil menarik dana'
+            onClose={closeConfirmation}
           />
         )}
       </main>
