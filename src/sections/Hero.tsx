@@ -26,9 +26,8 @@ function Hero() {
             colorVariant='secondary'
             className='mt-1 lg:mt-3'
           >
-            Millions of people are trying everyday. <br />
-            Every step they take, might get harder each day. Every penny we
-            dump, might be a treasure for them.
+            Bersama kita bisa memberikan harapan bagi mereka yang membutuhkan.
+            Mari bergabung dalam penggalangan dana untuk Foundation kami.
           </Typography>
           <Link href='/register'>
             <button className='mt-2 rounded-2xl border px-3 py-3 lg:mt-6'>

@@ -17,15 +17,14 @@ const AboutUs = () => {
           colorVariant='primary'
           className='pb-4 text-center font-extrabold'
         >
-          Reliable Partner
-          <span style={{ fontWeight: 'normal' }}>that Delivers More.</span>
+          Galang Dana
+          <span style={{ fontWeight: 'normal' }}>untuk Perubahan Nyata</span>
         </Typography>
         <Typography sizeVariant='c2' className='text-center'>
-          Tabana is the Agriculture Technology startup that focuses on
-          empowering farmers & traders in the livestock<br></br> sector. We
-          drive transformation in the livestock ecosystem through innovative
-          digital solutions & operational<br></br> excellence, ensuring
-          profitable and sustainable solutions for everyone in the ecosystem.
+          Dari Sabang sampai Merauke, banyak masyarakat Indonesia yang
+          membutuhkan bantuan kita. Ayo bergabung dalam penggalangan dana
+          Foundation kami dan bersama-sama memberikan perubahan bagi Indonesia
+          yang lebih baik.
         </Typography>
         <motion.div
           variants={staggerContainer}

@@ -19,17 +19,16 @@ const Cta = () => {
             colorVariant='primary'
             className='pb-6 text-start font-bold leading-tight'
           >
-            Join our community and be a part of the transformation journey
+            Berkontribusi untuk Masyarakat yang Lebih Sejahtera
           </Typography>
           <Typography
             sizeVariant='c3'
             colorVariant='primary'
             className='mb-[2px] pb-5 pt-[2px] text-start font-normal leading-relaxed'
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make.
+            Sekaranglah saatnya untuk berbuat baik dan memberikan bantuan bagi
+            mereka yang membutuhkan. Mari bergabung dalam penggalangan dana
+            Foundation kami dan jadilah bagian dari perubahan yang baik
           </Typography>
           <div className='flex'>
             <ButtonLink
