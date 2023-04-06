@@ -93,10 +93,10 @@ export default function HomePage() {
             item.judul_event.toLowerCase().includes(query.toLowerCase())
           );
           setFilteredDonasiList(filtered);
-          setLoading(false);
         }, 500)
       );
     }
+    setLoading(false);
   };
   //console.log(filteredDonasiList.length)
   const handleSubmit = async (e: any) => {

@@ -9,7 +9,7 @@ const nextConfig = {
   swcMinify: true,
 
   images: {
-    domains: ['i.pinimg.com', 'pin.it'],
+    domains: ['i.pinimg.com', 'pin.it', 'unsplash.com', 'ibb.com'],
   },
 
   // SVGR
