@@ -73,6 +73,7 @@ function Payment() {
       });
       if (response.ok) {
         setShowSuccessModal(true);
+        window.location.reload();
       } else {
         setShowFailedModal(true);
       }

@@ -43,14 +43,14 @@ function ListDonationCard({
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Deskripsi
               </Typography>
-              <Typography>{desc}</Typography>
+              <Typography className='line-clamp-1'>{desc}</Typography>
             </div>
             <div>
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Donasi
               </Typography>
               <Typography>Rp {jumlah_donasi}</Typography>
-              <Typography>Terkumpul dari {max_donasi}</Typography>
+              <Typography>Terkumpul dari Rp {max_donasi}</Typography>
             </div>
           </div>
         </div>
@@ -73,14 +73,14 @@ function ListDonationCard({
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Deskripsi
               </Typography>
-              <Typography>{desc}</Typography>
+              <Typography className='line-clamp-1'>{desc}</Typography>
             </div>
             <div>
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Donasi
               </Typography>
-              <Typography>Rp 5.000.000</Typography>
-              <Typography>Terkumpul dari Rp 5.000.000</Typography>
+              <Typography>Rp {jumlah_donasi}</Typography>
+              <Typography>Terkumpul dari Rp {max_donasi}</Typography>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { RiHandHeartLine } from 'react-icons/ri';
 import Layout from '@/components/layout/Layout';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
-import { DataType, getEventData } from '@/pages/api/event';
+import { DataType, getEventData, getMe } from '@/pages/api/event';
 import { useRouter } from 'next/router';
 import PopUpBank from '@/pages/payment/components/bankList';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -18,6 +18,8 @@ function Withdrawal() {
   const router = useRouter();
   const { id } = router.query;
   const [donation, setDonation] = useState<DataType>();
+  const [userID, setUserID] = useState("");
+  const [eventUserID, setEventUserID] = useState("");
   const [isOpen, setOpen] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
@@ -41,6 +43,32 @@ function Withdrawal() {
     };
     fetchEventData();
   }, [id]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+        const data = await getMe();
+        setUserID(data.data.id);
+      }
+    fetchUserData();
+  }, []);
+
+  // console.log("user ID :");
+  // console.log(userID);
+  // console.log("donation user ID :");
+  // console.log(donation?.user_id);
+  if (userID != donation?.user_id){
+    return (
+      <div className='flex justify-center items-center h-[100vh]'>
+        <Typography
+          sizeVariant='h1'
+          colorVariant='tertiary'
+          className='text-center font-bold'
+        >
+          Anda tidak dapat mengakses page ini.
+        </Typography>
+      </div>
+    )
+  } 
 
   const onSubmit = async (data: any) => {
     const bank = parseInt(data.bank);
@@ -66,6 +94,8 @@ function Withdrawal() {
       } 
     } catch (error) {
       throw new Error("Error Withdraw");
+    }finally {
+      window.location.reload();
     }
   };
 

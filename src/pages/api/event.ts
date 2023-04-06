@@ -91,6 +91,20 @@ export type EventData = {
   }>;
 };
 
+export const getMe = async () => {
+  try {
+    const response = await axios.get(`${API_BaseUrl}api/user/me`, {
+      headers:{
+        Authorization: `Bearer ${window.localStorage.getItem("token")}`
+      }
+    })
+    //console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error in API fetch getMe');
+  }
+};
+
 export const getEventData = async (id?: string) => {
   try {
     const response = await axios.get(`${API_BaseUrl}api/event/get/${id}`);
