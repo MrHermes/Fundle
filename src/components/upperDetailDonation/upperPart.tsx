@@ -69,19 +69,34 @@ function UpperPart({
               </Typography>
             </div>
           </div>
-          <div className='mx-2 flex min-w-[9rem] flex-row justify-center gap-x-3 rounded-xl bg-primary-500 font-semibold shadow-xl transition duration-500 hover:scale-110'>
+          <div className='mx-2 flex min-w-[9rem] flex-row justify-center gap-x-3 rounded-xl bg-primary-500 font-semibold shadow-xl p-2 transition duration-500 hover:scale-110'>
             <div className='my-auto text-3xl text-primary-100'>
               <BiTimeFive />
             </div>
-            <div className='my-[1vh]'>
+            
               {/* Sisa_hari -> integer*/}
-              <Typography sizeVariant='c3' colorVariant='primary'>
-                {sisaHari}
-              </Typography>
-              <Typography sizeVariant='c3' colorVariant='primary'>
-                Tersisa
-              </Typography>
-            </div>
+              
+              {sisaHari !== "Waktu Habis" ? 
+              (
+                <div className='my-auto'>
+                  <Typography sizeVariant='c3' colorVariant='primary'>
+                    {sisaHari}
+                  </Typography>
+                  <Typography sizeVariant='c3' colorVariant='primary'>
+                    Tersisa
+                  </Typography>
+                </div>
+              )
+              :
+              (
+                <div className='my-auto'>
+                  <Typography sizeVariant='c3' colorVariant='primary'>
+                    {sisaHari}
+                  </Typography>
+                </div>
+              )
+              }
+              
           </div>
         </div>
       </div>

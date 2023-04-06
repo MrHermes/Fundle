@@ -57,19 +57,6 @@ function Withdrawal() {
   // console.log(userID);
   // console.log("donation user ID :");
   // console.log(donation?.user_id);
-  if (userID != donation?.user_id) {
-    return (
-      <div className='flex h-[100vh] items-center justify-center'>
-        <Typography
-          sizeVariant='h1'
-          colorVariant='tertiary'
-          className='text-center font-bold'
-        >
-          Anda tidak dapat mengakses page ini.
-        </Typography>
-      </div>
-    );
-  }
 
   const onSubmit = async (data: any) => {
     const bank = parseInt(data.bank);
@@ -100,152 +87,168 @@ function Withdrawal() {
     }
   };
 
-  return (
-    <Layout>
-      <Seo />
-      <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
-      <main className='layout my-14 w-2/3 rounded-xl bg-primary-200 p-20'>
-        <div className='rounded-xl bg-primary-500'>
-          <Image
-            src={
-              donation?.foto_event &&
-              donation.foto_event != 'https://example.com/foto.jpg'
-                ? donation?.foto_event
-                : '/images/dummy-poster.svg'
-            } //Foto_Event
-            alt='Poster Image'
-            width={640}
-            height={480}
-            className=' h-60 w-full rounded-xl object-cover'
-          />
-          <Typography
-            sizeVariant='h4'
-            colorVariant='primary'
-            className='text-wrap my-5 text-center font-bold'
-          >
-            {donation?.judul_event ? donation.judul_event : ''}
-          </Typography>
-          <Typography
-            sizeVariant='c2'
-            colorVariant='primary'
-            className='text-center font-bold opacity-50'
-          >
-            Jumlah Uang yang dapat ditarik
-          </Typography>
-          <div className='flex flex-row flex-wrap justify-center'>
+  if (userID == donation?.user_id) {
+    return (
+      <Layout>
+        <Seo />
+        <div className='absolute top-0 min-h-[96px] w-full bg-primary-100 lg:min-h-[72px]'></div>
+        <main className='layout my-14 w-2/3 rounded-xl bg-primary-200 p-20'>
+          <div className='rounded-xl bg-primary-500'>
+            <Image
+              src={
+                donation?.foto_event &&
+                donation.foto_event != 'https://example.com/foto.jpg'
+                  ? donation?.foto_event
+                  : '/images/dummy-poster.svg'
+              } //Foto_Event
+              alt='Poster Image'
+              width={640}
+              height={480}
+              className=' h-60 w-full rounded-xl object-cover'
+            />
             <Typography
-              sizeVariant='h6'
-              colorVariant='tertiary'
-              className='font-bold'
+              sizeVariant='h4'
+              colorVariant='primary'
+              className='text-wrap my-5 text-center font-bold'
             >
-              Rp. {donation?.sisa_donasi ? donation.sisa_donasi : 0}
+              {donation?.judul_event ? donation.judul_event : ''}
             </Typography>
-          </div>
-          <Typography
-            sizeVariant='c3'
-            colorVariant='primary'
-            className='mt-3 text-center font-bold opacity-75'
-          >
-            Total donasi
-          </Typography>
-          <div className='flex flex-row flex-wrap justify-center'>
             <Typography
-              sizeVariant='c1'
-              colorVariant='tertiary'
-              className='font-bold'
+              sizeVariant='c2'
+              colorVariant='primary'
+              className='text-center font-bold opacity-50'
             >
-              Rp. {donation?.jumlah_donasi ? donation.jumlah_donasi : 0}
+              Jumlah Uang yang dapat ditarik
             </Typography>
+            <div className='flex flex-row flex-wrap justify-center'>
+              <Typography
+                sizeVariant='h6'
+                colorVariant='tertiary'
+                className='font-bold'
+              >
+                Rp. {donation?.sisa_donasi ? donation.sisa_donasi : 0}
+              </Typography>
+            </div>
             <Typography
               sizeVariant='c3'
               colorVariant='primary'
-              className='mt-auto font-bold opacity-50'
+              className='mt-3 text-center font-bold opacity-75'
             >
-              /Rp. {donation?.max_donasi ? donation.max_donasi : 0}
+              Total donasi
             </Typography>
-          </div>
-          <div className='flex flex-row flex-wrap justify-center py-5'>
-            <div className='mx-2 flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl border-2 border-solid bg-primary-500 p-2 font-semibold shadow-xl transition duration-500 hover:scale-110'>
-              <div className='my-auto text-3xl text-primary-100'>
-                <RiHandHeartLine />
-              </div>
-              <div className='my-auto'>
-                {/* Jumlah_Donatur */}
-                <Typography
-                  sizeVariant='c1'
-                  colorVariant='primary'
-                  className=''
-                >
-                  {donation?.is_done ? donation.is_done : 0}
-                </Typography>
-                <Typography
-                  sizeVariant='c3'
-                  colorVariant='primary'
-                  className=''
-                >
-                  Donasi
-                </Typography>
-              </div>
-            </div>
-            <div className='flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl border-2 border-solid bg-primary-500 p-2 font-semibold shadow-xl transition duration-500 hover:scale-110'>
-              <div className='my-auto text-3xl text-primary-100'>
-                <BiTimeFive />
-              </div>
-              <div className='my-auto'>
-                {/* Sisa_hari -> integer*/}
-                <Typography
-                  sizeVariant='c1'
-                  colorVariant='primary'
-                  className=''
-                >
-                  {donation?.time_left ? donation.time_left : '0'}
-                </Typography>
-                <Typography
-                  sizeVariant='c3'
-                  colorVariant='primary'
-                  className=''
-                >
-                  Tersisa
-                </Typography>
-              </div>
-            </div>
-          </div>
-          <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className='mx-auto w-5/6'>
-              <InputNominal max_withdraw={donation?.sisa_donasi} />
-              {/* Pop Up Window */}
-              <PopUpBank isOpen={isOpen} onClose={closeModal} />
-            </form>
-          </FormProvider>
-          <div className='mt-5 flex justify-center pb-5'>
-            {donation?.sisa_donasi != 0 || donation?.is_expired ? (
-              <button
-                className='w-25 mx-auto rounded-xl bg-secondary-100 px-5 py-3'
-                onClick={openModal}
+            <div className='flex flex-row flex-wrap justify-center'>
+              <Typography
+                sizeVariant='c1'
+                colorVariant='tertiary'
+                className='font-bold'
               >
-                <Typography sizeVariant='c3' colorVariant='secondary'>
-                  Lakukan penarikan
-                </Typography>
-              </button>
-            ) : (
-              <div className='w-25 mx-auto rounded-xl border-2 border-solid bg-primary-500 px-5 py-3 shadow-xl'>
-                <Typography sizeVariant='c3' colorVariant='primary'>
-                  Belum dapat melakukan penarikan
-                </Typography>
+                Rp. {donation?.jumlah_donasi ? donation.jumlah_donasi : 0}
+              </Typography>
+              <Typography
+                sizeVariant='c3'
+                colorVariant='primary'
+                className='mt-auto font-bold opacity-50'
+              >
+                /Rp. {donation?.max_donasi ? donation.max_donasi : 0}
+              </Typography>
+            </div>
+            <div className='flex flex-row flex-wrap justify-center py-5'>
+              <div className='mx-2 flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl border-2 border-solid bg-primary-500 p-2 font-semibold shadow-xl transition duration-500 hover:scale-110'>
+                <div className='my-auto text-3xl text-primary-100'>
+                  <RiHandHeartLine />
+                </div>
+                <div className='my-auto'>
+                  {/* Jumlah_Donatur */}
+                  <Typography
+                    sizeVariant='c1'
+                    colorVariant='primary'
+                    className=''
+                  >
+                    {donation?.is_done ? donation.is_done : 0}
+                  </Typography>
+                  <Typography
+                    sizeVariant='c3'
+                    colorVariant='primary'
+                    className=''
+                  >
+                    Donasi
+                  </Typography>
+                </div>
               </div>
-            )}
+              <div className='flex min-w-[10rem] flex-row justify-center gap-x-5 rounded-xl border-2 border-solid bg-primary-500 p-2 font-semibold shadow-xl transition duration-500 hover:scale-110'>
+                <div className='my-auto text-3xl text-primary-100'>
+                  <BiTimeFive />
+                </div>
+                <div className='my-auto'>
+                  {/* Sisa_hari -> integer*/}
+                  <Typography
+                    sizeVariant='c1'
+                    colorVariant='primary'
+                    className=''
+                  >
+                    {donation?.time_left ? donation.time_left : '0'}
+                  </Typography>
+                  <Typography
+                    sizeVariant='c3'
+                    colorVariant='primary'
+                    className=''
+                  >
+                    Tersisa
+                  </Typography>
+                </div>
+              </div>
+            </div>
+            <FormProvider {...methods}>
+              <form onSubmit={handleSubmit(onSubmit)} className='mx-auto w-5/6'>
+                <InputNominal max_withdraw={donation?.sisa_donasi} />
+                {/* Pop Up Window */}
+                <PopUpBank isOpen={isOpen} onClose={closeModal} />
+              </form>
+            </FormProvider>
+            <div className='mt-5 flex justify-center pb-5'>
+              {donation?.sisa_donasi != 0 || donation?.is_expired ? (
+                <button
+                  className='w-25 mx-auto rounded-xl bg-secondary-100 px-5 py-3'
+                  onClick={openModal}
+                >
+                  <Typography sizeVariant='c3' colorVariant='secondary'>
+                    Lakukan penarikan
+                  </Typography>
+                </button>
+              ) : (
+                <div className='w-25 mx-auto rounded-xl border-2 border-solid bg-primary-500 px-5 py-3 shadow-xl'>
+                  <Typography sizeVariant='c3' colorVariant='primary'>
+                    Belum dapat melakukan penarikan
+                  </Typography>
+                </div>
+              )}
+            </div>
           </div>
+          {showSuccessModal && (
+            <SuccessModal
+              href={`/withdraw/${id}`}
+              message='Berhasil menarik dana'
+              onClose={closeConfirmation}
+            />
+          )}
+        </main>
+      </Layout>
+    );
+  } else {
+    if (typeof donation?.user_id != 'undefined') {
+      return (
+        <div className='flex h-[100vh] items-center justify-center'>
+          <Typography
+            sizeVariant='h1'
+            colorVariant='tertiary'
+            className='text-center font-bold'
+          >
+            Anda tidak dapat mengakses page ini.
+          </Typography>
         </div>
-        {showSuccessModal && (
-          <SuccessModal
-            href={`/withdraw/${id}`}
-            message='Berhasil menarik dana'
-            onClose={closeConfirmation}
-          />
-        )}
-      </main>
-    </Layout>
-  );
+      );
+    }
+  }
 }
 
 export default Withdrawal;

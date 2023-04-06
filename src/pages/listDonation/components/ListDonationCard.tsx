@@ -35,7 +35,7 @@ function ListDonationCard({
             className='h-[450px] w-1/2 rounded-l-[36px] object-cover shadow-2xl'
           />
           <div className='flex w-1/2 flex-col gap-5 rounded-r-[36px] p-16 shadow-2xl'>
-            <Typography sizeVariant='h4' className='font-bold'>
+            <Typography sizeVariant='h4' className='font-bold line-clamp-2'>
               {title}
             </Typography>
             <hr className='h-1 rounded-md bg-primary-100' />
@@ -43,7 +43,7 @@ function ListDonationCard({
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Deskripsi
               </Typography>
-              <Typography className='line-clamp-1'>{desc}</Typography>
+              <Typography className='line-clamp-2'>{desc}</Typography>
             </div>
             <div>
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
@@ -65,7 +65,7 @@ function ListDonationCard({
             className='order-2 h-[450px] w-1/2 rounded-r-[36px] object-cover shadow-2xl'
           />
           <div className='flex w-1/2 flex-col gap-5 rounded-l-[36px] p-16 shadow-2xl'>
-            <Typography sizeVariant='h4' className='font-bold'>
+            <Typography sizeVariant='h4' className='font-bold line-clamp-2'>
               {title}
             </Typography>
             <hr className='h-1 rounded-md bg-primary-100' />
@@ -73,7 +73,7 @@ function ListDonationCard({
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>
                 Deskripsi
               </Typography>
-              <Typography className='line-clamp-1'>{desc}</Typography>
+              <Typography className='line-clamp-2'>{desc}</Typography>
             </div>
             <div>
               <Typography sizeVariant='c2' className='pb-2 font-semibold'>

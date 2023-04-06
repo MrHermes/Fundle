@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import Layout from '@/components/layout/Layout';
+import Loader from '@/components/loader/Loader';
 import Seo from '@/components/Seo';
 
 import { API_BaseUrl } from '@/constant/env';
@@ -15,6 +16,7 @@ import User from '@/pages/profileAccount/components/User';
 export default function ProfilePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userData, setUserData] = useState<GetMeType>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,12 +34,14 @@ export default function ProfilePage() {
       };
 
       try {
+        setIsLoading(true);
         const meResponse = await axios.get(`${API_BaseUrl}api/user/me`, config);
         const getMe = meResponse.data.data;
         setUserData(getMe);
         // console.log(getMe);
 
         setIsAuthenticated(true);
+        setIsLoading(false);
       } catch (error: any) {
         // // console.error(error);
         // if (axios.isAxiosError(error) && error.response?.status === 401) {
@@ -49,6 +53,14 @@ export default function ProfilePage() {
     };
     fetchData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className='flex min-h-screen w-full items-center justify-center'>
+        <Loader />
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return null;

@@ -8,14 +8,13 @@ import ProgressBar from '@/components/progressbars/progressBar';
 import Seo from '@/components/Seo';
 import Typography from '@/components/Typography';
 import UpperPart from '@/components/upperDetailDonation/upperPart';
-
-import { listDonatur } from '@/constant/listDonatur';
-import { DataType, getEventData } from '@/pages/api/event';
+import { DataType, get3LastDonation, getEventData, Last3DonationType } from '@/pages/api/event';
 
 function DetailDonation() {
   const router = useRouter();
   const { id } = router.query;
   const [donation, setDonation] = useState<DataType>();
+  const [historyDonation, setHistoryDonation] = useState<Last3DonationType[]>([]);
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -26,6 +25,17 @@ function DetailDonation() {
       }
     };
     fetchEventData();
+  }, [id]);
+
+  useEffect(() => {
+    const fetch3LastDonationData = async () => {
+      if (typeof id === 'string') {
+        const data = await get3LastDonation(id);
+        //console.log(data.data);
+        setHistoryDonation(data.data);
+      }
+    };
+    fetch3LastDonationData();
   }, [id]);
 
   let data = 0;
@@ -46,6 +56,7 @@ function DetailDonation() {
           fotoEvent={
             donation?.foto_event &&
             donation.foto_event != 'https://example.com/foto.jpg'
+            && donation.foto_event != "foto"
               ? donation?.foto_event
               : '/images/dummy-poster.svg'
           }
@@ -86,9 +97,9 @@ function DetailDonation() {
           >
             Donasi
           </Typography>
-          {listDonatur.map(({ id, name, money }) => (
+          {historyDonation && historyDonation?.map((historyDonation, index) => (
             <div
-              key={id}
+              key={index}
               className='my-3 rounded-xl bg-primary-200 p-5 shadow-xl'
             >
               <Typography
@@ -96,10 +107,10 @@ function DetailDonation() {
                 colorVariant='primary'
                 className='font-bold'
               >
-                {name}
+                {historyDonation.user.nama}
               </Typography>
               <Typography sizeVariant='c2' colorVariant='primary'>
-                Berhasil melakukan donasi sebesar Rp{money}
+                Berhasil melakukan donasi sebesar Rp {historyDonation.jumlah_donasi}
               </Typography>
             </div>
           ))}

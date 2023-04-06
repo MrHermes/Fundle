@@ -2,6 +2,27 @@ import axios from 'axios';
 
 import { API_BaseUrl } from '@/constant/env';
 
+export type Last3DonationType = {
+  id: string;
+  nama_bank: string,
+  jumlah_donasi: number,
+  tangal_transaksi: string,
+  user_id: string,
+  user: {
+    id: string,
+    nama: string,
+    no_telp: string,
+    email: string,
+    password: string,
+    confirm_password: string,
+    role: string,
+    created_at: string,
+    updated_at: string
+  },
+  event_id: string,
+  pembayaran_id: string
+}
+
 export type DonationListType = {
   asal_pekerjaan: string;
   deskripsi_event: string;
@@ -118,6 +139,16 @@ export const getEventData = async (id?: string) => {
 export const get3Event = async () => {
   try {
     const response = await axios.get(`${API_BaseUrl}api/event/get3event`);
+    //console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error in API fetch');
+  }
+};
+
+export const get3LastDonation = async (id? : string) => {
+  try {
+    const response = await axios.get(`${API_BaseUrl}api/event/last/${id}`);
     //console.log(response.data);
     return response.data;
   } catch (error) {
