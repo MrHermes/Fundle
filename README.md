@@ -1,4 +1,4 @@
-# fundle : Fundraising Website
+# Fundle : Fundraising Website
 ![fundle](https://user-images.githubusercontent.com/90272678/232728771-6edbfa80-e1a2-4058-8b41-b2e62be76b73.png)
 
 Front-end repository for the Fundle website. Built with NextJS, Typescript and Tailwind
